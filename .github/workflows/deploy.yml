@@ -1,0 +1,45 @@
+name: Actualizar y publicar
+
+on:
+  schedule:
+    - cron: '7 * * * *' # cada hora, al minuto 7 (evita la hora en punto, que va saturada)
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      # Si la descarga falla, este paso falla y NO se despliega: la web publicada queda como estaba.
+      - name: Descargar datos, previsión y calendario
+        run: npm run build
+        env:
+          FVB_URL: ${{ secrets.FVB_URL }}
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

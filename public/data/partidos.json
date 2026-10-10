@@ -1,0 +1,166 @@
+{
+  "generatedAt": "2026-10-10T07:35:28.001Z",
+  "equipo": {
+    "id": "17087",
+    "nombre": "Leioa SBT"
+  },
+  "grupo": {
+    "nombre": "GR.ÚNICO",
+    "competicion": "MINI MASC.-A-",
+    "categoria": "MINIBASKET MASCULINO-A-",
+    "temporada": "2026"
+  },
+  "jornadaActual": 1,
+  "totalJornadas": 18,
+  "jornadas": [
+    {
+      "jornada": 1,
+      "fecha": "2026-10-25",
+      "estado": "partido",
+      "partido": {
+        "idMatch": "104090",
+        "jornada": 1,
+        "fecha": "2026-10-24",
+        "hora": "11:00",
+        "horaPendiente": false,
+        "franja": "M",
+        "local": true,
+        "rival": {
+          "id": "17079",
+          "nombre": "BERRIO - OTXOA 15",
+          "escudo": null
+        },
+        "equipoLocal": "Leioa SBT",
+        "equipoVisitante": "BERRIO - OTXOA 15",
+        "pista": {
+          "id": "138",
+          "nombre": "POL.KANDELAZUBIETA",
+          "direccion": "KANDELAZUBIETA KALEA, S/N",
+          "codigoPostal": "48940",
+          "localidad": "Leioa",
+          "lat": 43.32383,
+          "lng": -2.98428,
+          "aparcamiento": null,
+          "notas": null,
+          "foto": null
+        },
+        "marcador": null
+      }
+    },
+    {
+      "jornada": 2,
+      "fecha": "2026-11-01",
+      "estado": "partido",
+      "partido": {
+        "idMatch": "104091",
+        "jornada": 2,
+        "fecha": "2026-10-31",
+        "hora": "10:20",
+        "horaPendiente": false,
+        "franja": "M",
+        "local": false,
+        "rival": {
+          "id": "17080",
+          "nombre": "REHABILITACIONES BILCONVER XXI",
+          "escudo": null
+        },
+        "equipoLocal": "REHABILITACIONES BILCONVER XXI",
+        "equipoVisitante": "Leioa SBT",
+        "pista": {
+          "id": "200",
+          "nombre": "SOPELAKO URKO KIROLDEGIA",
+          "direccion": "GATZARRIÑE, 26A",
+          "codigoPostal": "48600",
+          "localidad": "Sopela",
+          "lat": 43.37287,
+          "lng": -2.98825,
+          "aparcamiento": null,
+          "notas": null,
+          "foto": null
+        },
+        "marcador": null
+      }
+    },
+    {
+      "jornada": 3,
+      "fecha": "2026-11-08",
+      "estado": "pendiente"
+    },
+    {
+      "jornada": 4,
+      "fecha": "2026-11-15",
+      "estado": "pendiente"
+    },
+    {
+      "jornada": 5,
+      "fecha": "2026-11-22",
+      "estado": "pendiente"
+    },
+    {
+      "jornada": 6,
+      "fecha": "2026-11-29",
+      "estado": "pendiente"
+    },
+    {
+      "jornada": 7,
+      "fecha": "2026-12-13",
+      "estado": "pendiente"
+    },
+    {
+      "jornada": 8,
+      "fecha": "2026-12-20",
+      "estado": "pendiente"
+    },
+    {
+      "jornada": 9,
+      "fecha": "2027-01-10",
+      "estado": "pendiente"
+    },
+    {
+      "jornada": 10,
+      "fecha": "2027-01-17",
+      "estado": "pendiente"
+    },
+    {
+      "jornada": 11,
+      "fecha": "2027-01-24",
+      "estado": "pendiente"
+    },
+    {
+      "jornada": 12,
+      "fecha": "2027-01-31",
+      "estado": "pendiente"
+    },
+    {
+      "jornada": 13,
+      "fecha": "2027-02-14",
+      "estado": "pendiente"
+    },
+    {
+      "jornada": 14,
+      "fecha": "2027-02-21",
+      "estado": "pendiente"
+    },
+    {
+      "jornada": 15,
+      "fecha": "2027-02-28",
+      "estado": "pendiente"
+    },
+    {
+      "jornada": 16,
+      "fecha": "2027-03-07",
+      "estado": "pendiente"
+    },
+    {
+      "jornada": 17,
+      "fecha": "2027-03-14",
+      "estado": "pendiente"
+    },
+    {
+      "jornada": 18,
+      "fecha": "2027-04-11",
+      "estado": "pendiente"
+    }
+  ],
+  "clasificacion": []
+}

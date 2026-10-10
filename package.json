@@ -1,0 +1,15 @@
+{
+  "name": "leioa-sbt-mini-web",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Web estática de Leioa SBT, minibasket masculino A",
+  "type": "module",
+  "engines": { "node": ">=22.9" },
+  "scripts": {
+    "update": "node --env-file-if-exists=.env scripts/update.mjs",
+    "ics": "node scripts/ics.mjs",
+    "weather": "node scripts/weather.mjs",
+    "build": "npm run update && npm run weather && npm run ics",
+    "serve": "node scripts/serve.mjs"
+  }
+}

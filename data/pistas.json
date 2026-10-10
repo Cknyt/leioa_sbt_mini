@@ -1,0 +1,10 @@
+{
+  "_leeme": "Completa pistas a mano. Clave = idField o nombre exacto de la pista (nameField). Campos opcionales: lat, lng (solo se usan si la API no trae coordenadas), aparcamiento, notas, foto (ruta bajo public/, p. ej. img/pistas/kandelazubieta.jpg). Las claves que empiezan por _ se ignoran.",
+  "_ejemplo": {
+    "lat": 43.0,
+    "lng": -2.9,
+    "aparcamiento": "Descripción corta del aparcamiento",
+    "notas": "Entrada por la puerta lateral",
+    "foto": "img/pistas/ejemplo.jpg"
+  }
+}
