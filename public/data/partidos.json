@@ -1,8 +1,9 @@
 {
-  "generatedAt": "2026-10-10T07:35:28.001Z",
+  "generatedAt": "2026-10-10T08:47:52.275Z",
   "equipo": {
     "id": "17087",
-    "nombre": "Leioa SBT"
+    "nombre": "Leioa SBT",
+    "escudo": "img/escudos/17087.png"
   },
   "grupo": {
     "nombre": "GR.ÚNICO",

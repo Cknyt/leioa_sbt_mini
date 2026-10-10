@@ -6,25 +6,28 @@
   <title>Leioa SBT · Minibasket A</title>
   <meta name="description" content="Calendario de partidos de Leioa SBT, minibasket masculino A.">
   <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#0a5c36">
   <link rel="stylesheet" href="css/style.css">
   <script src="js/theme.js"></script>
 </head>
 <body>
-  <header class="top">
-    <div class="wrap top__row">
-      <div>
+  <header class="hero">
+    <div class="wrap hero__inner">
+      <img class="hero__crest" id="team-crest" alt="" hidden>
+      <div class="hero__text">
+        <p class="eyebrow">Minibasket masculino A · Bizkaia</p>
         <h1>Leioa SBT</h1>
-        <p class="sub" id="subtitle">Minibasket masculino A</p>
+        <p class="hero__sub" id="subtitle"></p>
       </div>
       <button class="icon-btn" id="theme-toggle" type="button" aria-label="Cambiar tema claro/oscuro">
-        <span aria-hidden="true" id="theme-icon">◐</span>
+        <span aria-hidden="true">◐</span>
       </button>
     </div>
   </header>
 
-  <main class="wrap">
+  <main class="wrap main">
     <section aria-labelledby="next-title" id="next-section" hidden>
-      <h2 id="next-title" class="section-title">Próximo partido</h2>
+      <h2 id="next-title" class="sr-only">Próximo partido</h2>
       <div id="next"></div>
     </section>
 
@@ -34,15 +37,13 @@
     </section>
 
     <section aria-labelledby="all-title">
-      <h2 id="all-title" class="section-title">Todos los partidos</h2>
+      <h2 id="all-title" class="section-title">Temporada</h2>
       <div id="list" class="list" aria-live="polite">
         <p class="muted">Cargando…</p>
       </div>
     </section>
 
-    <p class="cal">
-      <a href="calendario.ics">Suscribirse al calendario (.ics)</a>
-    </p>
+    <a class="cal-link" href="calendario.ics">📅 Suscribirse al calendario</a>
   </main>
 
   <footer class="wrap foot">

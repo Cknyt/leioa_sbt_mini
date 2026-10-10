@@ -8,6 +8,7 @@ import { fileURLToPath } from 'node:url';
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = join(ROOT, 'public', 'data', 'partidos.json');
 const PISTAS = join(ROOT, 'data', 'pistas.json');
+const CRESTS_DIR = join(ROOT, 'public', 'img', 'escudos');
 
 const TEAM_ID = '17087';
 const TEAM_NAME = 'Leioa SBT';
@@ -50,7 +51,7 @@ const num = (v) => {
   return Number.isFinite(n) ? n : null;
 };
 
-function normalizeMatch(m, pistas) {
+function normalizeMatch(m, pistas, crests) {
   const [fecha, horaRaw = ''] = String(m.matchDay).split(' ');
   const hhmm = horaRaw.slice(0, 5);
   // 00:00 y 23:59 son marcadores de "hora por confirmar".
@@ -75,7 +76,7 @@ function normalizeMatch(m, pistas) {
     rival: {
       id: String(local ? m.idVisitorTeam : m.idLocalTeam),
       nombre: local ? m.nameVisitorTeam : m.nameLocalTeam,
-      escudo: clean(local ? (m.logoVisitant ?? m.logoVisitante) : m.logoLocal),
+      escudo: crests[String(local ? m.idVisitorTeam : m.idLocalTeam)] ?? null,
     },
     equipoLocal: m.nameLocalTeam,
     equipoVisitante: m.nameVisitorTeam,
@@ -137,7 +138,7 @@ function normalizeStanding(standing) {
         (b.puntosFavor ?? 0) - (b.puntosContra ?? 0) - ((a.puntosFavor ?? 0) - (a.puntosContra ?? 0)));
 }
 
-function normalize(raw, pistas) {
+function normalize(raw, pistas, crests) {
   if (raw?.result !== 'OK' || !raw.messageData?.rounds) {
     throw new Error('formato inesperado: falta result "OK" o messageData.rounds');
   }
@@ -160,7 +161,7 @@ function normalize(raw, pistas) {
       const ours = matches.find(
         (m) => String(m.idLocalTeam) === TEAM_ID || String(m.idVisitorTeam) === TEAM_ID,
       );
-      if (ours) return { ...base, estado: 'partido', partido: normalizeMatch(ours, pistas) };
+      if (ours) return { ...base, estado: 'partido', partido: normalizeMatch(ours, pistas, crests) };
       // Jornada asignada en la que no aparecemos, o la API lo indica: descansamos.
       if (matches.length > 0 || restIds.has(n)) return { ...base, estado: 'descansa' };
       return { ...base, estado: 'pendiente' };
@@ -168,7 +169,7 @@ function normalize(raw, pistas) {
 
   return {
     generatedAt: new Date().toISOString(),
-    equipo: { id: TEAM_ID, nombre: TEAM_NAME },
+    equipo: { id: TEAM_ID, nombre: TEAM_NAME, escudo: crests[TEAM_ID] ?? null },
     grupo: {
       nombre: md.group?.nameGroup ?? null,
       competicion: md.group?.competitionName ?? null,
@@ -178,8 +179,59 @@ function normalize(raw, pistas) {
     jornadaActual: lastRound,
     totalJornadas: Number(md.totalRounds) || jornadas.length,
     jornadas,
-    clasificacion: normalizeStanding(md.standing),
+    clasificacion: normalizeStanding(md.standing).map((r) => ({ ...r, escudo: crests[r.id] ?? null })),
   };
+}
+
+// ---------- escudos ----------
+// Se descargan una vez a public/img/escudos/ (así el navegador no pide nada al CDN de la federación).
+// Solo se baja un escudo si es nuevo o ha cambiado su URL (manifest.json). Un fallo no aborta la ejecución.
+const IMG_TYPES = { 'image/png': 'png', 'image/jpeg': 'jpg', 'image/webp': 'webp', 'image/gif': 'gif' };
+const MAX_CREST_BYTES = 1_000_000;
+
+async function syncCrests(raw) {
+  const sources = new Map(); // idTeam -> url
+  for (const round of Object.values(raw.messageData?.rounds ?? {})) {
+    for (const m of Object.values(round.matches ?? {})) {
+      const local = clean(m.logoLocal);
+      const visitor = clean(m.logoVisitant ?? m.logoVisitante);
+      if (local) sources.set(String(m.idLocalTeam), local);
+      if (visitor) sources.set(String(m.idVisitorTeam), visitor);
+    }
+  }
+  await mkdir(CRESTS_DIR, { recursive: true });
+  const manifestPath = join(CRESTS_DIR, 'manifest.json');
+  const manifest = await readFile(manifestPath, 'utf8').then(JSON.parse, () => ({}));
+  const result = {};
+  let changed = false;
+
+  for (const [id, url] of sources) {
+    const known = manifest[id];
+    if (known?.url === url) {
+      result[id] = known.file;
+      continue;
+    }
+    try {
+      if (!url.startsWith('https://') || !/^\d+$/.test(id)) throw new Error('URL o id no válidos');
+      const res = await fetch(url, { headers: { 'User-Agent': USER_AGENT }, signal: AbortSignal.timeout(15_000) });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const ext = IMG_TYPES[(res.headers.get('content-type') ?? '').split(';')[0].trim()];
+      if (!ext) throw new Error('el contenido no es una imagen admitida');
+      const buf = Buffer.from(await res.arrayBuffer());
+      if (buf.length > MAX_CREST_BYTES) throw new Error('imagen demasiado grande');
+      const file = `img/escudos/${id}.${ext}`;
+      await writeFile(join(ROOT, 'public', file), buf);
+      manifest[id] = { url, file };
+      result[id] = file;
+      changed = true;
+      await new Promise((r) => setTimeout(r, 300)); // sin ráfagas contra el CDN
+    } catch (err) {
+      console.warn(`! escudo del equipo ${id} no descargado (${err.cause?.code ?? err.message})`);
+      if (known) result[id] = known.file; // conserva el anterior
+    }
+  }
+  if (changed) await writeFile(manifestPath, JSON.stringify(manifest, null, 2) + '\n');
+  return result;
 }
 
 // ---------- main ----------
@@ -192,7 +244,8 @@ try {
     download(url),
     readFile(PISTAS, 'utf8').then(JSON.parse, () => ({})),
   ]);
-  data = normalize(raw, pistas);
+  const crests = await syncCrests(raw);
+  data = normalize(raw, pistas, crests);
 } catch (err) {
   fail(err.message);
 }
