@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-10T08:47:52.275Z",
+  "generatedAt": "2026-10-10T09:24:58.550Z",
   "equipo": {
     "id": "17087",
     "nombre": "Leioa SBT",
@@ -23,6 +23,7 @@
         "jornada": 1,
         "fecha": "2026-10-24",
         "hora": "11:00",
+        "convocatoria": "10:15",
         "horaPendiente": false,
         "franja": "M",
         "local": true,
@@ -57,6 +58,7 @@
         "jornada": 2,
         "fecha": "2026-10-31",
         "hora": "10:20",
+        "convocatoria": "09:35",
         "horaPendiente": false,
         "franja": "M",
         "local": false,

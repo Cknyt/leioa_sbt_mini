@@ -26,24 +26,28 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:partido-104090@leioa-sbt-mini
-DTSTAMP:20261010T073528Z
-DTSTART;TZID=Europe/Madrid:20261024T110000
-DURATION:PT1H30M
+DTSTAMP:20261010T092458Z
+DTSTART;TZID=Europe/Madrid:20261024T101500
+DURATION:PT135M
 SUMMARY:Leioa SBT - BERRIO - OTXOA 15
 LOCATION:POL.KANDELAZUBIETA\, KANDELAZUBIETA KALEA\, S/N\, 48940 Leioa
 GEO:43.32383;-2.98428
-DESCRIPTION:Jornada 1 · Local\nCómo llegar: https://www.google.com/maps/d
- ir/?api=1&destination=43.32383%2C-2.98428
+URL:https://cknyt.github.io/leioa_sbt_mini/
+DESCRIPTION:Jornada 1 · Local\nConvocatoria: 10:15 · Partido: 11:00\nCóm
+ o llegar: https://www.google.com/maps/dir/?api=1&destination=43.32383%2C-2
+ .98428\nMás info: https://cknyt.github.io/leioa_sbt_mini/
 END:VEVENT
 BEGIN:VEVENT
 UID:partido-104091@leioa-sbt-mini
-DTSTAMP:20261010T073528Z
-DTSTART;TZID=Europe/Madrid:20261031T102000
-DURATION:PT1H30M
+DTSTAMP:20261010T092458Z
+DTSTART;TZID=Europe/Madrid:20261031T093500
+DURATION:PT135M
 SUMMARY:REHABILITACIONES BILCONVER XXI - Leioa SBT
 LOCATION:SOPELAKO URKO KIROLDEGIA\, GATZARRIÑE\, 26A\, 48600 Sopela
 GEO:43.37287;-2.98825
-DESCRIPTION:Jornada 2 · Visitante\nCómo llegar: https://www.google.com/ma
- ps/dir/?api=1&destination=43.37287%2C-2.98825
+URL:https://cknyt.github.io/leioa_sbt_mini/
+DESCRIPTION:Jornada 2 · Visitante\nConvocatoria: 09:35 · Partido: 10:20\n
+ Cómo llegar: https://www.google.com/maps/dir/?api=1&destination=43.37287%
+ 2C-2.98825\nMás info: https://cknyt.github.io/leioa_sbt_mini/
 END:VEVENT
 END:VCALENDAR

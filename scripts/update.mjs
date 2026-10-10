@@ -12,6 +12,7 @@ const CRESTS_DIR = join(ROOT, 'public', 'img', 'escudos');
 
 const TEAM_ID = '17087';
 const TEAM_NAME = 'Leioa SBT';
+const CONVOCATORIA_MIN = 45; // la convocatoria es 45 minutos antes del partido
 const USER_AGENT = 'leioa-sbt-mini-web/0.1 (web de familias; contacto: info@experienciatek.com)';
 
 const fail = (msg) => {
@@ -51,6 +52,12 @@ const num = (v) => {
   return Number.isFinite(n) ? n : null;
 };
 
+function minusMinutes(hhmm, min) {
+  const [h, m] = hhmm.split(':').map(Number);
+  const t = (h * 60 + m - min + 1440) % 1440;
+  return `${String(Math.floor(t / 60)).padStart(2, '0')}:${String(t % 60).padStart(2, '0')}`;
+}
+
 function normalizeMatch(m, pistas, crests) {
   const [fecha, horaRaw = ''] = String(m.matchDay).split(' ');
   const hhmm = horaRaw.slice(0, 5);
@@ -70,6 +77,7 @@ function normalizeMatch(m, pistas, crests) {
     jornada: Number(m.numMatchDay),
     fecha,
     hora: horaPendiente ? null : hhmm,
+    convocatoria: horaPendiente ? null : minusMinutes(hhmm, CONVOCATORIA_MIN),
     horaPendiente,
     franja: m.dayTime === 'T' ? 'T' : 'M', // M = mañana, T = tarde
     local,

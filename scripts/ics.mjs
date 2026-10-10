@@ -9,7 +9,9 @@ const DATA = join(ROOT, 'public', 'data', 'partidos.json');
 const OUT = join(ROOT, 'public', 'calendario.ics');
 
 const TZ = 'Europe/Madrid';
-const DURATION = 'PT1H30M';
+const MATCH_MIN = 90; // duración del partido
+const CONVOCATORIA_MIN = 45;
+const SITE_URL = 'https://cknyt.github.io/leioa_sbt_mini/';
 
 const data = JSON.parse(await readFile(DATA, 'utf8'));
 const stamp = new Date(data.generatedAt).toISOString().replace(/[-:]/g, '').replace(/\.\d+/, '');
@@ -62,8 +64,10 @@ function event(m) {
   const local = m.local ? 'Local' : 'Visitante';
   const lines = ['BEGIN:VEVENT', `UID:partido-${m.idMatch}@leioa-sbt-mini`, `DTSTAMP:${stamp}`];
   if (m.hora) {
-    lines.push(`DTSTART;TZID=${TZ}:${compact(m.fecha)}T${m.hora.replace(':', '')}00`);
-    lines.push(`DURATION:${DURATION}`);
+    // El evento empieza en la convocatoria y cubre hasta el final del partido.
+    const start = m.convocatoria ?? m.hora;
+    lines.push(`DTSTART;TZID=${TZ}:${compact(m.fecha)}T${start.replace(':', '')}00`);
+    lines.push(`DURATION:PT${CONVOCATORIA_MIN + MATCH_MIN}M`);
   } else {
     // Hora por confirmar: evento de día completo (DTEND exclusivo).
     lines.push(`DTSTART;VALUE=DATE:${compact(m.fecha)}`);
@@ -77,11 +81,14 @@ function event(m) {
   if (p.lat != null && p.lng != null) lines.push(`GEO:${p.lat};${p.lng}`);
   const desc = [
     `Jornada ${m.jornada} · ${local}`,
+    m.hora ? `Convocatoria: ${m.convocatoria} · Partido: ${m.hora}` : null,
     m.hora ? null : `Hora por confirmar (${m.franja === 'T' ? 'tarde' : 'mañana'})`,
     p.aparcamiento ? `Aparcamiento: ${p.aparcamiento}` : null,
     p.notas ? `Notas: ${p.notas}` : null,
     `Cómo llegar: ${mapsUrl(p)}`,
+    `Más info: ${SITE_URL}`,
   ].filter(Boolean);
+  lines.push(`URL:${SITE_URL}`);
   lines.push(`DESCRIPTION:${esc(desc.join('\n'))}`);
   lines.push('END:VEVENT');
   return lines;

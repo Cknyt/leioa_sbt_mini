@@ -130,6 +130,7 @@ function nextCard(j) {
     h('div', { class: 'vs-row' },
       side(m.equipoLocal, escudoDe(true), us(true)), mid, side(m.equipoVisitante, escudoDe(false), us(false))),
     h('div', { class: 'when-big' }, fechaLarga(m.fecha), m.hora ? ` · ${m.hora}` : '',
+      m.convocatoria && h('small', {}, `Convocatoria a las ${m.convocatoria}`),
       m.horaPendiente && h('small', {}, `${franja(m)} · hora por confirmar`)),
     countdown,
     h('div', { class: 'place' },
@@ -162,7 +163,8 @@ function matchCard(j, { past }) {
         crest(m.rival.escudo, m.rival.nombre, 'md'),
         h('span', { class: 'opp__name' }, `${m.local ? 'vs' : '@'} ${m.rival.nombre}`),
         m.marcador && h('span', { class: 'score' }, `${m.marcador.local} - ${m.marcador.visitante}`)),
-      h('div', { class: 'card__time' }, m.hora ?? `${franja(m)} · hora por confirmar`),
+      h('div', { class: 'card__time' }, m.hora ?? `${franja(m)} · hora por confirmar`,
+        m.convocatoria && h('small', {}, ` · convocatoria ${m.convocatoria}`)),
       h('div', { class: 'venue' }, [p.nombre ?? 'Pista por confirmar', p.localidad].filter(Boolean).join(' · ')),
       !past && extras(m, { weather: true }),
       !past && mapsButton(p, 'btn btn--sm')));
@@ -244,9 +246,12 @@ async function main() {
     const img = $('team-crest');
     img.src = equipo.escudo;
     img.hidden = false;
+    const mark = $('team-mark');
+    mark.src = equipo.escudo;
+    mark.hidden = false;
   }
   const y = Number(data.grupo?.temporada);
-  if (y) $('subtitle').textContent = `Temporada ${y}/${String((y + 1) % 100).padStart(2, '0')}`;
+  if (y) $('subtitle').textContent = `Minibasket masculino A · Temporada ${y}/${String((y + 1) % 100).padStart(2, '0')}`;
 
   const today = todayMadrid();
   const next = data.jornadas.find((j) => j.estado === 'partido' && isUpcoming(j, today));
