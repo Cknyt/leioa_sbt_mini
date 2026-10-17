@@ -1,5 +1,6 @@
 // Descarga el JSON de la federación, lo normaliza y escribe public/data/partidos.json.
-// Una sola petición por ejecución. Si algo falla, el partidos.json anterior se conserva.
+// La URL base solo trae dos jornadas con partidos; el resto se pide con /N (cada respuesta trae N y N+1),
+// así que son ~9 peticiones por ejecución, espaciadas. Si algo falla, el partidos.json anterior se conserva.
 // La URL (FVB_URL) nunca se imprime: contiene un token.
 import { readFile, writeFile, rename, mkdir } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
@@ -43,6 +44,30 @@ async function download(url) {
   } catch {
     throw new Error('la respuesta no es JSON válido (ni JSON plano ni base64)');
   }
+}
+
+const roundsOf = (raw) => raw?.messageData?.rounds ?? {};
+const hasMatches = (round) => Object.keys(round?.matches ?? {}).length > 0;
+
+// Completa las jornadas que la URL base devuelve vacías pidiendo `${url}/N`.
+async function downloadAll(url) {
+  const raw = await download(url);
+  const rounds = roundsOf(raw);
+  const base = url.replace(/\/+$/, '');
+  for (const n of Object.keys(rounds).map(Number).sort((a, b) => a - b)) {
+    if (hasMatches(rounds[n])) continue; // ya vino en la base o en una petición anterior
+    await new Promise((r) => setTimeout(r, 500)); // sin ráfagas contra la API
+    let extra;
+    try {
+      extra = await download(`${base}/${n}`);
+    } catch (err) {
+      throw new Error(`jornada ${n}: ${err.message}`);
+    }
+    for (const [k, round] of Object.entries(roundsOf(extra))) {
+      if (k in rounds && !hasMatches(rounds[k]) && hasMatches(round)) rounds[k] = round;
+    }
+  }
+  return raw;
 }
 
 // ---------- normalización ----------
@@ -249,7 +274,7 @@ if (!url) fail('Falta FVB_URL. Define la variable en .env (ver .env.example).');
 let data;
 try {
   const [raw, pistas] = await Promise.all([
-    download(url),
+    downloadAll(url),
     readFile(PISTAS, 'utf8').then(JSON.parse, () => ({})),
   ]);
   const crests = await syncCrests(raw);
