@@ -160,6 +160,7 @@ const STANDING_FIELDS = {
   puntosFavor: ['matchScoreFavour'],
   puntosContra: ['matchScoreAgainst'],
   puntos: ['standingScore'],
+  noPresentados: ['matchNotPresent'],
 };
 
 function normalizeStanding(standing) {
@@ -182,15 +183,15 @@ function normalizeStanding(standing) {
   return out.sort((a, b) => (a.posicion ?? 99) - (b.posicion ?? 99));
 }
 
-// Si la API aún no publica clasificación pero ya hay resultados, se calcula (2 pts victoria, 1 derrota).
+// Si la API aún no publica clasificación, se calcula con los resultados (2 pts victoria, 1 derrota).
+// Sin partidos jugados sale la lista de equipos a cero, sin posiciones.
 function computeStanding(matches) {
   const played = matches.filter((m) => m.marcador);
-  if (played.length === 0) return [];
   const t = new Map();
   const row = (team) => {
     if (!t.has(team.id)) {
       t.set(team.id, { id: team.id, nombre: team.nombre, posicion: null, jugados: 0, ganados: 0, perdidos: 0,
-        empatados: 0, puntosFavor: 0, puntosContra: 0, puntos: 0, esNuestro: team.id === TEAM_ID });
+        empatados: 0, puntosFavor: 0, puntosContra: 0, puntos: 0, noPresentados: 0, esNuestro: team.id === TEAM_ID });
     }
     return t.get(team.id);
   };
@@ -205,8 +206,9 @@ function computeStanding(matches) {
     }
   }
   const out = [...t.values()].sort((a, b) =>
-    b.puntos - a.puntos || (b.puntosFavor - b.puntosContra) - (a.puntosFavor - a.puntosContra) || b.puntosFavor - a.puntosFavor);
-  out.forEach((r, i) => { r.posicion = i + 1; });
+    b.puntos - a.puntos || (b.puntosFavor - b.puntosContra) - (a.puntosFavor - a.puntosContra) || b.puntosFavor - a.puntosFavor ||
+    a.nombre.localeCompare(b.nombre, 'es'));
+  out.forEach((r, i) => { r.posicion = played.length ? i + 1 : null; });
   return out;
 }
 

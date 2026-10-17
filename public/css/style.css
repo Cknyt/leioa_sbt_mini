@@ -170,6 +170,13 @@ td:nth-child(2), th:nth-child(2) { text-align: left; }
 .team-cell { display: flex; align-items: center; gap: 8px; }
 tbody tr + tr td { border-top: 1px solid var(--border); }
 tr.us { background: var(--highlight); font-weight: 800; }
+/* La columna del equipo queda fija al desplazar la tabla en horizontal (móvil). */
+.standing .c-nombre { position: sticky; left: 0; background: var(--surface); z-index: 1; min-width: 150px; box-shadow: 1px 0 0 var(--border); }
+.standing tr.us .c-nombre { background: var(--highlight); }
+.standing th, .standing td { white-space: nowrap; }
+.standing .c-nombre span { white-space: normal; }
+.form { display: inline-flex; gap: 3px; }
+.dot--sm { min-width: 20px; height: 20px; padding: 0 4px; font-size: .68rem; }
 
 .note { font-size: .8rem; margin: 6px 4px 0; }
 .empty { margin: 0; padding: 4px 2px; font-size: .92rem; }

@@ -325,23 +325,63 @@ function renderStanding(rows) {
     $('standing-section').hidden = false;
     return;
   }
+  const anyPlayed = rows.some((r) => r.jugados > 0);
+  const dif = (r) => (r.puntosFavor != null && r.puntosContra != null ? r.puntosFavor - r.puntosContra : null);
+  const avg = (v, r) => (v != null && r.jugados ? (v / r.jugados).toFixed(1).replace('.', ',') : null);
+  // [clave, cabecera, explicación, valor]; E y NP solo si alguien tiene alguno.
   const cols = [
-    ['posicion', '#'], ['nombre', 'Equipo'], ['jugados', 'PJ'], ['ganados', 'G'], ['perdidos', 'P'],
-    ['puntosFavor', 'PF'], ['puntosContra', 'PC'], ['puntos', 'Pts'],
-  ].filter(([k]) => k === 'nombre' || rows.some((r) => r[k] != null)); // oculta columnas que la API no traiga
-  const cell = (r, k, i) => {
-    if (k === 'posicion') return String(r.posicion ?? i + 1);
-    if (k === 'nombre') return h('div', { class: 'team-cell' }, crest(r.escudo, r.nombre ?? '?', 'sm'), h('span', {}, r.nombre ?? '–'));
-    return String(r[k] ?? '–');
+    ['posicion', '#', 'Posición', (r) => r.posicion],
+    ['nombre', 'Equipo', null, null],
+    ['jugados', 'PJ', 'Partidos jugados', (r) => r.jugados],
+    ['ganados', 'G', 'Ganados', (r) => r.ganados],
+    ['perdidos', 'P', 'Perdidos', (r) => r.perdidos],
+    ['empatados', 'E', 'Empatados', (r) => r.empatados, 'any'],
+    ['noPresentados', 'NP', 'No presentados', (r) => r.noPresentados, 'any'],
+    ['puntosFavor', 'PF', 'Puntos a favor', (r) => r.puntosFavor],
+    ['puntosContra', 'PC', 'Puntos en contra', (r) => r.puntosContra],
+    ['dif', 'DIF', 'Diferencia de puntos (average)', (r) => { const d = dif(r); return d == null ? null : d > 0 ? `+${d}` : String(d); }],
+    ['mediaFavor', 'M+', 'Media de puntos a favor por partido', (r) => avg(r.puntosFavor, r)],
+    ['mediaContra', 'M−', 'Media de puntos en contra por partido', (r) => avg(r.puntosContra, r)],
+    ['puntos', 'Pts', 'Puntos de clasificación', (r) => r.puntos],
+    ['forma', 'Últimos', 'Últimos 5 partidos (V victoria, D derrota)', null],
+  ].filter(([k, , , get, mode]) => {
+    if (k === 'nombre' || k === 'forma') return true;
+    if (mode === 'any') return rows.some((r) => get(r) > 0);
+    return rows.some((r) => get(r) != null); // oculta columnas que la API no traiga
+  });
+
+  const form = (r) => {
+    const last = (data.grupoPartidos ?? [])
+      .filter((m) => m.marcador && (m.local.id === r.id || m.visitante.id === r.id))
+      .sort((a, b) => a.jornada - b.jornada).slice(-5);
+    if (!last.length) return '–';
+    return h('span', { class: 'form' }, last.map((m) => {
+      const [pf, pc] = m.local.id === r.id ? [m.marcador.local, m.marcador.visitante] : [m.marcador.visitante, m.marcador.local];
+      const o = pf > pc ? 'V' : pf < pc ? 'D' : 'E';
+      const rival = m.local.id === r.id ? m.visitante.nombre : m.local.nombre;
+      return h('span', { class: `dot dot--sm dot--${o}`, title: `J${m.jornada} vs ${rival}: ${pf}-${pc}` }, o);
+    }));
   };
-  $('standing').replaceChildren(h('table', {},
+  const cell = (r, [k, , , get]) => {
+    if (k === 'nombre') return h('div', { class: 'team-cell' }, crest(r.escudo, r.nombre ?? '?', 'sm'), h('span', {}, r.nombre ?? '–'));
+    if (k === 'forma') return form(r);
+    const v = get(r);
+    return v == null ? '–' : String(v);
+  };
+  $('standing').replaceChildren(h('table', { class: 'standing' },
     h('caption', { class: 'sr-only' }, 'Clasificación del grupo'),
-    h('thead', {}, h('tr', {}, cols.map(([, t]) => h('th', { scope: 'col' }, t)))),
-    h('tbody', {}, rows.map((r, i) =>
-      h('tr', { class: r.esNuestro ? 'us' : null }, cols.map(([k]) => h('td', {}, cell(r, k, i))))))));
-  $('standing-note').textContent = data.clasificacionCalculada
-    ? 'Calculada con los resultados publicados (2 puntos por victoria, 1 por derrota); la oficial puede variar.'
-    : '';
+    h('thead', {}, h('tr', {}, cols.map(([k, t, title]) => h('th', { scope: 'col', title, class: `c-${k}` }, t)))),
+    h('tbody', {}, rows.map((r) =>
+      h('tr', { class: r.esNuestro ? 'us' : null }, cols.map((c) => h('td', { class: `c-${c[0]}` }, cell(r, c))))))));
+
+  const legend = cols.filter(([, , title]) => title && title !== 'Posición').map(([, t, title]) => `${t}: ${title.charAt(0).toLowerCase()}${title.slice(1)}`).join(' · ');
+  $('standing-note').textContent = [
+    !anyPlayed ? `Todavía no se ha jugado ningún partido. ${firstMatchText()}` : null,
+    anyPlayed && data.clasificacionCalculada
+      ? 'Calculada con los resultados publicados (2 puntos por victoria, 1 por derrota; desempate por diferencia de puntos); la oficial puede variar.'
+      : null,
+    legend,
+  ].filter(Boolean).join(' ');
   $('standing-section').hidden = false;
 }
 
