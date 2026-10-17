@@ -1,0 +1,15 @@
+{
+  "name": "Leioa SBT Mini",
+  "short_name": "Leioa Mini",
+  "description": "Partidos de Leioa SBT, minibasket masculino A",
+  "lang": "es",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0a5c36",
+  "theme_color": "#0a5c36",
+  "icons": [
+    { "src": "img/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "img/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ]
+}

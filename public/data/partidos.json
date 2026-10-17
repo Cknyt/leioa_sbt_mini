@@ -1,11 +1,12 @@
 {
-  "generatedAt": "2026-10-17T06:21:39.218Z",
+  "generatedAt": "2026-10-17T06:38:00.337Z",
   "equipo": {
     "id": "17087",
     "nombre": "Leioa SBT",
     "escudo": "img/escudos/17087.png"
   },
   "grupo": {
+    "id": "2924",
     "nombre": "GR.ÚNICO",
     "competicion": "MINI MASC.-A-",
     "categoria": "MINIBASKET MASCULINO-A-",
@@ -34,6 +35,16 @@
         },
         "equipoLocal": "Leioa SBT",
         "equipoVisitante": "BERRIO - OTXOA 15",
+        "equipacion": {
+          "nuestra": {
+            "camiseta": "BLANCA",
+            "pantalon": "VERDE"
+          },
+          "rival": {
+            "camiseta": "Rojo",
+            "pantalon": "Azul"
+          }
+        },
         "pista": {
           "id": "138",
           "nombre": "POL.KANDELAZUBIETA",
@@ -46,7 +57,8 @@
           "notas": null,
           "foto": null
         },
-        "marcador": null
+        "marcador": null,
+        "cambios": []
       }
     },
     {
@@ -69,6 +81,16 @@
         },
         "equipoLocal": "REHABILITACIONES BILCONVER XXI",
         "equipoVisitante": "Leioa SBT",
+        "equipacion": {
+          "nuestra": {
+            "camiseta": "BLANCA",
+            "pantalon": "VERDE"
+          },
+          "rival": {
+            "camiseta": "URDIÑA",
+            "pantalon": "HORIA"
+          }
+        },
         "pista": {
           "id": "200",
           "nombre": "SOPELAKO URKO KIROLDEGIA",
@@ -81,7 +103,8 @@
           "notas": null,
           "foto": null
         },
-        "marcador": null
+        "marcador": null,
+        "cambios": []
       }
     },
     {
@@ -104,6 +127,16 @@
         },
         "equipoLocal": "Leioa SBT",
         "equipoVisitante": "Ibaizabal Berdea",
+        "equipacion": {
+          "nuestra": {
+            "camiseta": "BLANCA",
+            "pantalon": "VERDE"
+          },
+          "rival": {
+            "camiseta": "verde",
+            "pantalon": "#008000"
+          }
+        },
         "pista": {
           "id": "138",
           "nombre": "POL.KANDELAZUBIETA",
@@ -116,7 +149,8 @@
           "notas": null,
           "foto": null
         },
-        "marcador": null
+        "marcador": null,
+        "cambios": []
       }
     },
     {
@@ -139,6 +173,16 @@
         },
         "equipoLocal": "LOIOLA INDAUTXU 2015",
         "equipoVisitante": "Leioa SBT",
+        "equipacion": {
+          "nuestra": {
+            "camiseta": "BLANCA",
+            "pantalon": "VERDE"
+          },
+          "rival": {
+            "camiseta": "ROJO",
+            "pantalon": "BLANCO"
+          }
+        },
         "pista": {
           "id": "114",
           "nombre": "COL.JESUITAS",
@@ -151,7 +195,8 @@
           "notas": null,
           "foto": null
         },
-        "marcador": null
+        "marcador": null,
+        "cambios": []
       }
     },
     {
@@ -174,6 +219,16 @@
         },
         "equipoLocal": "Leioa SBT",
         "equipoVisitante": "SANTURTZI MINI MORADO MASC",
+        "equipacion": {
+          "nuestra": {
+            "camiseta": "BLANCA",
+            "pantalon": "VERDE"
+          },
+          "rival": {
+            "camiseta": "MORADA",
+            "pantalon": "BLANCA"
+          }
+        },
         "pista": {
           "id": "138",
           "nombre": "POL.KANDELAZUBIETA",
@@ -186,7 +241,8 @@
           "notas": null,
           "foto": null
         },
-        "marcador": null
+        "marcador": null,
+        "cambios": []
       }
     },
     {
@@ -209,6 +265,16 @@
         },
         "equipoLocal": "TABIRAKO 2015 M",
         "equipoVisitante": "Leioa SBT",
+        "equipacion": {
+          "nuestra": {
+            "camiseta": "BLANCA",
+            "pantalon": "VERDE"
+          },
+          "rival": {
+            "camiseta": "AZUL",
+            "pantalon": "BLANCA"
+          }
+        },
         "pista": {
           "id": "221",
           "nombre": "C.P LANDAKO ",
@@ -221,7 +287,8 @@
           "notas": null,
           "foto": null
         },
-        "marcador": null
+        "marcador": null,
+        "cambios": []
       }
     },
     {
@@ -244,6 +311,16 @@
         },
         "equipoLocal": "Leioa SBT",
         "equipoVisitante": "LA SALLE 2016",
+        "equipacion": {
+          "nuestra": {
+            "camiseta": "BLANCA",
+            "pantalon": "VERDE"
+          },
+          "rival": {
+            "camiseta": "AMARILLO",
+            "pantalon": "AZUL"
+          }
+        },
         "pista": {
           "id": "138",
           "nombre": "POL.KANDELAZUBIETA",
@@ -256,7 +333,8 @@
           "notas": null,
           "foto": null
         },
-        "marcador": null
+        "marcador": null,
+        "cambios": []
       }
     },
     {
@@ -279,6 +357,16 @@
         },
         "equipoLocal": "LA SALLE 2015",
         "equipoVisitante": "Leioa SBT",
+        "equipacion": {
+          "nuestra": {
+            "camiseta": "BLANCA",
+            "pantalon": "VERDE"
+          },
+          "rival": {
+            "camiseta": "AMARILLO",
+            "pantalon": "AZUL"
+          }
+        },
         "pista": {
           "id": "141",
           "nombre": "COL.LA SALLE",
@@ -291,7 +379,8 @@
           "notas": null,
           "foto": null
         },
-        "marcador": null
+        "marcador": null,
+        "cambios": []
       }
     },
     {
@@ -319,6 +408,16 @@
         },
         "equipoLocal": "BERRIO - OTXOA 15",
         "equipoVisitante": "Leioa SBT",
+        "equipacion": {
+          "nuestra": {
+            "camiseta": "BLANCA",
+            "pantalon": "VERDE"
+          },
+          "rival": {
+            "camiseta": "Rojo",
+            "pantalon": "Azul"
+          }
+        },
         "pista": {
           "id": "229",
           "nombre": "FRONTÓN COLEGIO BERRIO OTXOA",
@@ -331,7 +430,8 @@
           "notas": null,
           "foto": null
         },
-        "marcador": null
+        "marcador": null,
+        "cambios": []
       }
     },
     {
@@ -354,6 +454,16 @@
         },
         "equipoLocal": "Leioa SBT",
         "equipoVisitante": "REHABILITACIONES BILCONVER XXI",
+        "equipacion": {
+          "nuestra": {
+            "camiseta": "BLANCA",
+            "pantalon": "VERDE"
+          },
+          "rival": {
+            "camiseta": "URDIÑA",
+            "pantalon": "HORIA"
+          }
+        },
         "pista": {
           "id": "138",
           "nombre": "POL.KANDELAZUBIETA",
@@ -366,7 +476,8 @@
           "notas": null,
           "foto": null
         },
-        "marcador": null
+        "marcador": null,
+        "cambios": []
       }
     },
     {
@@ -389,6 +500,16 @@
         },
         "equipoLocal": "Ibaizabal Berdea",
         "equipoVisitante": "Leioa SBT",
+        "equipacion": {
+          "nuestra": {
+            "camiseta": "BLANCA",
+            "pantalon": "VERDE"
+          },
+          "rival": {
+            "camiseta": "verde",
+            "pantalon": "#008000"
+          }
+        },
         "pista": {
           "id": "168",
           "nombre": "URRETA-1 IKASTETXEA",
@@ -401,7 +522,8 @@
           "notas": null,
           "foto": null
         },
-        "marcador": null
+        "marcador": null,
+        "cambios": []
       }
     },
     {
@@ -424,6 +546,16 @@
         },
         "equipoLocal": "Leioa SBT",
         "equipoVisitante": "LOIOLA INDAUTXU 2015",
+        "equipacion": {
+          "nuestra": {
+            "camiseta": "BLANCA",
+            "pantalon": "VERDE"
+          },
+          "rival": {
+            "camiseta": "ROJO",
+            "pantalon": "BLANCO"
+          }
+        },
         "pista": {
           "id": "138",
           "nombre": "POL.KANDELAZUBIETA",
@@ -436,7 +568,8 @@
           "notas": null,
           "foto": null
         },
-        "marcador": null
+        "marcador": null,
+        "cambios": []
       }
     },
     {
@@ -459,6 +592,16 @@
         },
         "equipoLocal": "SANTURTZI MINI MORADO MASC",
         "equipoVisitante": "Leioa SBT",
+        "equipacion": {
+          "nuestra": {
+            "camiseta": "BLANCA",
+            "pantalon": "VERDE"
+          },
+          "rival": {
+            "camiseta": "MORADA",
+            "pantalon": "BLANCA"
+          }
+        },
         "pista": {
           "id": "176",
           "nombre": "POLIDEPORTIVO MIKEL TRUEBA",
@@ -471,7 +614,8 @@
           "notas": null,
           "foto": null
         },
-        "marcador": null
+        "marcador": null,
+        "cambios": []
       }
     },
     {
@@ -494,6 +638,16 @@
         },
         "equipoLocal": "Leioa SBT",
         "equipoVisitante": "TABIRAKO 2015 M",
+        "equipacion": {
+          "nuestra": {
+            "camiseta": "BLANCA",
+            "pantalon": "VERDE"
+          },
+          "rival": {
+            "camiseta": "AZUL",
+            "pantalon": "BLANCA"
+          }
+        },
         "pista": {
           "id": "138",
           "nombre": "POL.KANDELAZUBIETA",
@@ -506,7 +660,8 @@
           "notas": null,
           "foto": null
         },
-        "marcador": null
+        "marcador": null,
+        "cambios": []
       }
     },
     {
@@ -529,6 +684,16 @@
         },
         "equipoLocal": "LA SALLE 2016",
         "equipoVisitante": "Leioa SBT",
+        "equipacion": {
+          "nuestra": {
+            "camiseta": "BLANCA",
+            "pantalon": "VERDE"
+          },
+          "rival": {
+            "camiseta": "AMARILLO",
+            "pantalon": "AZUL"
+          }
+        },
         "pista": {
           "id": "141",
           "nombre": "COL.LA SALLE",
@@ -541,7 +706,8 @@
           "notas": null,
           "foto": null
         },
-        "marcador": null
+        "marcador": null,
+        "cambios": []
       }
     },
     {
@@ -564,6 +730,16 @@
         },
         "equipoLocal": "Leioa SBT",
         "equipoVisitante": "LA SALLE 2015",
+        "equipacion": {
+          "nuestra": {
+            "camiseta": "BLANCA",
+            "pantalon": "VERDE"
+          },
+          "rival": {
+            "camiseta": "AMARILLO",
+            "pantalon": "AZUL"
+          }
+        },
         "pista": {
           "id": "138",
           "nombre": "POL.KANDELAZUBIETA",
@@ -576,7 +752,8 @@
           "notas": null,
           "foto": null
         },
-        "marcador": null
+        "marcador": null,
+        "cambios": []
       }
     },
     {
@@ -585,5 +762,1232 @@
       "estado": "descansa"
     }
   ],
-  "clasificacion": []
+  "grupoPartidos": [
+    {
+      "idMatch": "104087",
+      "jornada": 1,
+      "fecha": "2026-10-24",
+      "hora": null,
+      "local": {
+        "id": "17084",
+        "nombre": "TABIRAKO 2015 M",
+        "escudo": "img/escudos/17084.jpg"
+      },
+      "visitante": {
+        "id": "17082",
+        "nombre": "LOIOLA INDAUTXU 2015",
+        "escudo": "img/escudos/17082.png"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104088",
+      "jornada": 1,
+      "fecha": "2026-10-24",
+      "hora": null,
+      "local": {
+        "id": "17085",
+        "nombre": "LA SALLE 2016",
+        "escudo": "img/escudos/17085.png"
+      },
+      "visitante": {
+        "id": "17081",
+        "nombre": "Ibaizabal Berdea",
+        "escudo": "img/escudos/17081.png"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104089",
+      "jornada": 1,
+      "fecha": "2026-10-24",
+      "hora": null,
+      "local": {
+        "id": "17086",
+        "nombre": "LA SALLE 2015",
+        "escudo": "img/escudos/17086.png"
+      },
+      "visitante": {
+        "id": "17080",
+        "nombre": "REHABILITACIONES BILCONVER XXI",
+        "escudo": null
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104090",
+      "jornada": 1,
+      "fecha": "2026-10-24",
+      "hora": "11:00",
+      "local": {
+        "id": "17087",
+        "nombre": "Leioa SBT",
+        "escudo": "img/escudos/17087.png"
+      },
+      "visitante": {
+        "id": "17079",
+        "nombre": "BERRIO - OTXOA 15",
+        "escudo": null
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104091",
+      "jornada": 2,
+      "fecha": "2026-10-31",
+      "hora": "10:20",
+      "local": {
+        "id": "17080",
+        "nombre": "REHABILITACIONES BILCONVER XXI",
+        "escudo": null
+      },
+      "visitante": {
+        "id": "17087",
+        "nombre": "Leioa SBT",
+        "escudo": "img/escudos/17087.png"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104092",
+      "jornada": 2,
+      "fecha": "2026-10-31",
+      "hora": "11:00",
+      "local": {
+        "id": "17081",
+        "nombre": "Ibaizabal Berdea",
+        "escudo": "img/escudos/17081.png"
+      },
+      "visitante": {
+        "id": "17086",
+        "nombre": "LA SALLE 2015",
+        "escudo": "img/escudos/17086.png"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104093",
+      "jornada": 2,
+      "fecha": "2026-10-31",
+      "hora": null,
+      "local": {
+        "id": "17082",
+        "nombre": "LOIOLA INDAUTXU 2015",
+        "escudo": "img/escudos/17082.png"
+      },
+      "visitante": {
+        "id": "17085",
+        "nombre": "LA SALLE 2016",
+        "escudo": "img/escudos/17085.png"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104094",
+      "jornada": 2,
+      "fecha": "2026-10-31",
+      "hora": "11:30",
+      "local": {
+        "id": "17083",
+        "nombre": "SANTURTZI MINI MORADO MASC",
+        "escudo": "img/escudos/17083.png"
+      },
+      "visitante": {
+        "id": "17084",
+        "nombre": "TABIRAKO 2015 M",
+        "escudo": "img/escudos/17084.jpg"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104095",
+      "jornada": 3,
+      "fecha": "2026-11-07",
+      "hora": null,
+      "local": {
+        "id": "17085",
+        "nombre": "LA SALLE 2016",
+        "escudo": "img/escudos/17085.png"
+      },
+      "visitante": {
+        "id": "17083",
+        "nombre": "SANTURTZI MINI MORADO MASC",
+        "escudo": "img/escudos/17083.png"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104096",
+      "jornada": 3,
+      "fecha": "2026-11-07",
+      "hora": null,
+      "local": {
+        "id": "17086",
+        "nombre": "LA SALLE 2015",
+        "escudo": "img/escudos/17086.png"
+      },
+      "visitante": {
+        "id": "17082",
+        "nombre": "LOIOLA INDAUTXU 2015",
+        "escudo": "img/escudos/17082.png"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104097",
+      "jornada": 3,
+      "fecha": "2026-11-07",
+      "hora": "11:00",
+      "local": {
+        "id": "17087",
+        "nombre": "Leioa SBT",
+        "escudo": "img/escudos/17087.png"
+      },
+      "visitante": {
+        "id": "17081",
+        "nombre": "Ibaizabal Berdea",
+        "escudo": "img/escudos/17081.png"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104098",
+      "jornada": 3,
+      "fecha": "2026-11-07",
+      "hora": "10:00",
+      "local": {
+        "id": "17079",
+        "nombre": "BERRIO - OTXOA 15",
+        "escudo": null
+      },
+      "visitante": {
+        "id": "17080",
+        "nombre": "REHABILITACIONES BILCONVER XXI",
+        "escudo": null
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104099",
+      "jornada": 4,
+      "fecha": "2026-11-14",
+      "hora": "11:00",
+      "local": {
+        "id": "17081",
+        "nombre": "Ibaizabal Berdea",
+        "escudo": "img/escudos/17081.png"
+      },
+      "visitante": {
+        "id": "17079",
+        "nombre": "BERRIO - OTXOA 15",
+        "escudo": null
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104100",
+      "jornada": 4,
+      "fecha": "2026-11-14",
+      "hora": null,
+      "local": {
+        "id": "17082",
+        "nombre": "LOIOLA INDAUTXU 2015",
+        "escudo": "img/escudos/17082.png"
+      },
+      "visitante": {
+        "id": "17087",
+        "nombre": "Leioa SBT",
+        "escudo": "img/escudos/17087.png"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104101",
+      "jornada": 4,
+      "fecha": "2026-11-14",
+      "hora": "09:30",
+      "local": {
+        "id": "17083",
+        "nombre": "SANTURTZI MINI MORADO MASC",
+        "escudo": "img/escudos/17083.png"
+      },
+      "visitante": {
+        "id": "17086",
+        "nombre": "LA SALLE 2015",
+        "escudo": "img/escudos/17086.png"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104102",
+      "jornada": 4,
+      "fecha": "2026-11-14",
+      "hora": null,
+      "local": {
+        "id": "17084",
+        "nombre": "TABIRAKO 2015 M",
+        "escudo": "img/escudos/17084.jpg"
+      },
+      "visitante": {
+        "id": "17085",
+        "nombre": "LA SALLE 2016",
+        "escudo": "img/escudos/17085.png"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104103",
+      "jornada": 5,
+      "fecha": "2026-11-21",
+      "hora": null,
+      "local": {
+        "id": "17086",
+        "nombre": "LA SALLE 2015",
+        "escudo": "img/escudos/17086.png"
+      },
+      "visitante": {
+        "id": "17084",
+        "nombre": "TABIRAKO 2015 M",
+        "escudo": "img/escudos/17084.jpg"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104104",
+      "jornada": 5,
+      "fecha": "2026-11-21",
+      "hora": "11:00",
+      "local": {
+        "id": "17087",
+        "nombre": "Leioa SBT",
+        "escudo": "img/escudos/17087.png"
+      },
+      "visitante": {
+        "id": "17083",
+        "nombre": "SANTURTZI MINI MORADO MASC",
+        "escudo": "img/escudos/17083.png"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104105",
+      "jornada": 5,
+      "fecha": "2026-11-21",
+      "hora": null,
+      "local": {
+        "id": "17079",
+        "nombre": "BERRIO - OTXOA 15",
+        "escudo": null
+      },
+      "visitante": {
+        "id": "17082",
+        "nombre": "LOIOLA INDAUTXU 2015",
+        "escudo": "img/escudos/17082.png"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104106",
+      "jornada": 5,
+      "fecha": "2026-11-21",
+      "hora": "13:00",
+      "local": {
+        "id": "17080",
+        "nombre": "REHABILITACIONES BILCONVER XXI",
+        "escudo": null
+      },
+      "visitante": {
+        "id": "17081",
+        "nombre": "Ibaizabal Berdea",
+        "escudo": "img/escudos/17081.png"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104107",
+      "jornada": 6,
+      "fecha": "2026-11-28",
+      "hora": null,
+      "local": {
+        "id": "17082",
+        "nombre": "LOIOLA INDAUTXU 2015",
+        "escudo": "img/escudos/17082.png"
+      },
+      "visitante": {
+        "id": "17080",
+        "nombre": "REHABILITACIONES BILCONVER XXI",
+        "escudo": null
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104108",
+      "jornada": 6,
+      "fecha": "2026-11-28",
+      "hora": "09:30",
+      "local": {
+        "id": "17083",
+        "nombre": "SANTURTZI MINI MORADO MASC",
+        "escudo": "img/escudos/17083.png"
+      },
+      "visitante": {
+        "id": "17079",
+        "nombre": "BERRIO - OTXOA 15",
+        "escudo": null
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104109",
+      "jornada": 6,
+      "fecha": "2026-11-28",
+      "hora": null,
+      "local": {
+        "id": "17084",
+        "nombre": "TABIRAKO 2015 M",
+        "escudo": "img/escudos/17084.jpg"
+      },
+      "visitante": {
+        "id": "17087",
+        "nombre": "Leioa SBT",
+        "escudo": "img/escudos/17087.png"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104110",
+      "jornada": 6,
+      "fecha": "2026-11-28",
+      "hora": null,
+      "local": {
+        "id": "17085",
+        "nombre": "LA SALLE 2016",
+        "escudo": "img/escudos/17085.png"
+      },
+      "visitante": {
+        "id": "17086",
+        "nombre": "LA SALLE 2015",
+        "escudo": "img/escudos/17086.png"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104111",
+      "jornada": 7,
+      "fecha": "2026-12-12",
+      "hora": "11:00",
+      "local": {
+        "id": "17087",
+        "nombre": "Leioa SBT",
+        "escudo": "img/escudos/17087.png"
+      },
+      "visitante": {
+        "id": "17085",
+        "nombre": "LA SALLE 2016",
+        "escudo": "img/escudos/17085.png"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104112",
+      "jornada": 7,
+      "fecha": "2026-12-12",
+      "hora": null,
+      "local": {
+        "id": "17079",
+        "nombre": "BERRIO - OTXOA 15",
+        "escudo": null
+      },
+      "visitante": {
+        "id": "17084",
+        "nombre": "TABIRAKO 2015 M",
+        "escudo": "img/escudos/17084.jpg"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104113",
+      "jornada": 7,
+      "fecha": "2026-12-12",
+      "hora": "10:20",
+      "local": {
+        "id": "17080",
+        "nombre": "REHABILITACIONES BILCONVER XXI",
+        "escudo": null
+      },
+      "visitante": {
+        "id": "17083",
+        "nombre": "SANTURTZI MINI MORADO MASC",
+        "escudo": "img/escudos/17083.png"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104114",
+      "jornada": 7,
+      "fecha": "2026-12-12",
+      "hora": "11:00",
+      "local": {
+        "id": "17081",
+        "nombre": "Ibaizabal Berdea",
+        "escudo": "img/escudos/17081.png"
+      },
+      "visitante": {
+        "id": "17082",
+        "nombre": "LOIOLA INDAUTXU 2015",
+        "escudo": "img/escudos/17082.png"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104115",
+      "jornada": 8,
+      "fecha": "2026-12-19",
+      "hora": "09:30",
+      "local": {
+        "id": "17083",
+        "nombre": "SANTURTZI MINI MORADO MASC",
+        "escudo": "img/escudos/17083.png"
+      },
+      "visitante": {
+        "id": "17081",
+        "nombre": "Ibaizabal Berdea",
+        "escudo": "img/escudos/17081.png"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104116",
+      "jornada": 8,
+      "fecha": "2026-12-19",
+      "hora": null,
+      "local": {
+        "id": "17084",
+        "nombre": "TABIRAKO 2015 M",
+        "escudo": "img/escudos/17084.jpg"
+      },
+      "visitante": {
+        "id": "17080",
+        "nombre": "REHABILITACIONES BILCONVER XXI",
+        "escudo": null
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104117",
+      "jornada": 8,
+      "fecha": "2026-12-19",
+      "hora": null,
+      "local": {
+        "id": "17085",
+        "nombre": "LA SALLE 2016",
+        "escudo": "img/escudos/17085.png"
+      },
+      "visitante": {
+        "id": "17079",
+        "nombre": "BERRIO - OTXOA 15",
+        "escudo": null
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104118",
+      "jornada": 8,
+      "fecha": "2026-12-19",
+      "hora": null,
+      "local": {
+        "id": "17086",
+        "nombre": "LA SALLE 2015",
+        "escudo": "img/escudos/17086.png"
+      },
+      "visitante": {
+        "id": "17087",
+        "nombre": "Leioa SBT",
+        "escudo": "img/escudos/17087.png"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104119",
+      "jornada": 9,
+      "fecha": "2027-01-09",
+      "hora": null,
+      "local": {
+        "id": "17079",
+        "nombre": "BERRIO - OTXOA 15",
+        "escudo": null
+      },
+      "visitante": {
+        "id": "17086",
+        "nombre": "LA SALLE 2015",
+        "escudo": "img/escudos/17086.png"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104120",
+      "jornada": 9,
+      "fecha": "2027-01-09",
+      "hora": "10:20",
+      "local": {
+        "id": "17080",
+        "nombre": "REHABILITACIONES BILCONVER XXI",
+        "escudo": null
+      },
+      "visitante": {
+        "id": "17085",
+        "nombre": "LA SALLE 2016",
+        "escudo": "img/escudos/17085.png"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104121",
+      "jornada": 9,
+      "fecha": "2027-01-09",
+      "hora": "11:00",
+      "local": {
+        "id": "17081",
+        "nombre": "Ibaizabal Berdea",
+        "escudo": "img/escudos/17081.png"
+      },
+      "visitante": {
+        "id": "17084",
+        "nombre": "TABIRAKO 2015 M",
+        "escudo": "img/escudos/17084.jpg"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104122",
+      "jornada": 9,
+      "fecha": "2027-01-09",
+      "hora": null,
+      "local": {
+        "id": "17082",
+        "nombre": "LOIOLA INDAUTXU 2015",
+        "escudo": "img/escudos/17082.png"
+      },
+      "visitante": {
+        "id": "17083",
+        "nombre": "SANTURTZI MINI MORADO MASC",
+        "escudo": "img/escudos/17083.png"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104123",
+      "jornada": 10,
+      "fecha": "2027-01-16",
+      "hora": null,
+      "local": {
+        "id": "17082",
+        "nombre": "LOIOLA INDAUTXU 2015",
+        "escudo": "img/escudos/17082.png"
+      },
+      "visitante": {
+        "id": "17084",
+        "nombre": "TABIRAKO 2015 M",
+        "escudo": "img/escudos/17084.jpg"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104124",
+      "jornada": 10,
+      "fecha": "2027-01-16",
+      "hora": "11:00",
+      "local": {
+        "id": "17081",
+        "nombre": "Ibaizabal Berdea",
+        "escudo": "img/escudos/17081.png"
+      },
+      "visitante": {
+        "id": "17085",
+        "nombre": "LA SALLE 2016",
+        "escudo": "img/escudos/17085.png"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104125",
+      "jornada": 10,
+      "fecha": "2027-01-16",
+      "hora": "10:20",
+      "local": {
+        "id": "17080",
+        "nombre": "REHABILITACIONES BILCONVER XXI",
+        "escudo": null
+      },
+      "visitante": {
+        "id": "17086",
+        "nombre": "LA SALLE 2015",
+        "escudo": "img/escudos/17086.png"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104126",
+      "jornada": 10,
+      "fecha": "2027-01-16",
+      "hora": null,
+      "local": {
+        "id": "17079",
+        "nombre": "BERRIO - OTXOA 15",
+        "escudo": null
+      },
+      "visitante": {
+        "id": "17087",
+        "nombre": "Leioa SBT",
+        "escudo": "img/escudos/17087.png"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104127",
+      "jornada": 11,
+      "fecha": "2027-01-23",
+      "hora": "11:00",
+      "local": {
+        "id": "17087",
+        "nombre": "Leioa SBT",
+        "escudo": "img/escudos/17087.png"
+      },
+      "visitante": {
+        "id": "17080",
+        "nombre": "REHABILITACIONES BILCONVER XXI",
+        "escudo": null
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104128",
+      "jornada": 11,
+      "fecha": "2027-01-23",
+      "hora": null,
+      "local": {
+        "id": "17086",
+        "nombre": "LA SALLE 2015",
+        "escudo": "img/escudos/17086.png"
+      },
+      "visitante": {
+        "id": "17081",
+        "nombre": "Ibaizabal Berdea",
+        "escudo": "img/escudos/17081.png"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104129",
+      "jornada": 11,
+      "fecha": "2027-01-23",
+      "hora": null,
+      "local": {
+        "id": "17085",
+        "nombre": "LA SALLE 2016",
+        "escudo": "img/escudos/17085.png"
+      },
+      "visitante": {
+        "id": "17082",
+        "nombre": "LOIOLA INDAUTXU 2015",
+        "escudo": "img/escudos/17082.png"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104130",
+      "jornada": 11,
+      "fecha": "2027-01-23",
+      "hora": null,
+      "local": {
+        "id": "17084",
+        "nombre": "TABIRAKO 2015 M",
+        "escudo": "img/escudos/17084.jpg"
+      },
+      "visitante": {
+        "id": "17083",
+        "nombre": "SANTURTZI MINI MORADO MASC",
+        "escudo": "img/escudos/17083.png"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104131",
+      "jornada": 12,
+      "fecha": "2027-01-30",
+      "hora": "09:30",
+      "local": {
+        "id": "17083",
+        "nombre": "SANTURTZI MINI MORADO MASC",
+        "escudo": "img/escudos/17083.png"
+      },
+      "visitante": {
+        "id": "17085",
+        "nombre": "LA SALLE 2016",
+        "escudo": "img/escudos/17085.png"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104132",
+      "jornada": 12,
+      "fecha": "2027-01-30",
+      "hora": null,
+      "local": {
+        "id": "17082",
+        "nombre": "LOIOLA INDAUTXU 2015",
+        "escudo": "img/escudos/17082.png"
+      },
+      "visitante": {
+        "id": "17086",
+        "nombre": "LA SALLE 2015",
+        "escudo": "img/escudos/17086.png"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104133",
+      "jornada": 12,
+      "fecha": "2027-01-30",
+      "hora": "11:00",
+      "local": {
+        "id": "17081",
+        "nombre": "Ibaizabal Berdea",
+        "escudo": "img/escudos/17081.png"
+      },
+      "visitante": {
+        "id": "17087",
+        "nombre": "Leioa SBT",
+        "escudo": "img/escudos/17087.png"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104134",
+      "jornada": 12,
+      "fecha": "2027-01-30",
+      "hora": "10:20",
+      "local": {
+        "id": "17080",
+        "nombre": "REHABILITACIONES BILCONVER XXI",
+        "escudo": null
+      },
+      "visitante": {
+        "id": "17079",
+        "nombre": "BERRIO - OTXOA 15",
+        "escudo": null
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104135",
+      "jornada": 13,
+      "fecha": "2027-02-13",
+      "hora": null,
+      "local": {
+        "id": "17079",
+        "nombre": "BERRIO - OTXOA 15",
+        "escudo": null
+      },
+      "visitante": {
+        "id": "17081",
+        "nombre": "Ibaizabal Berdea",
+        "escudo": "img/escudos/17081.png"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104136",
+      "jornada": 13,
+      "fecha": "2027-02-13",
+      "hora": "11:00",
+      "local": {
+        "id": "17087",
+        "nombre": "Leioa SBT",
+        "escudo": "img/escudos/17087.png"
+      },
+      "visitante": {
+        "id": "17082",
+        "nombre": "LOIOLA INDAUTXU 2015",
+        "escudo": "img/escudos/17082.png"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104137",
+      "jornada": 13,
+      "fecha": "2027-02-13",
+      "hora": null,
+      "local": {
+        "id": "17086",
+        "nombre": "LA SALLE 2015",
+        "escudo": "img/escudos/17086.png"
+      },
+      "visitante": {
+        "id": "17083",
+        "nombre": "SANTURTZI MINI MORADO MASC",
+        "escudo": "img/escudos/17083.png"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104138",
+      "jornada": 13,
+      "fecha": "2027-02-13",
+      "hora": null,
+      "local": {
+        "id": "17085",
+        "nombre": "LA SALLE 2016",
+        "escudo": "img/escudos/17085.png"
+      },
+      "visitante": {
+        "id": "17084",
+        "nombre": "TABIRAKO 2015 M",
+        "escudo": "img/escudos/17084.jpg"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104139",
+      "jornada": 14,
+      "fecha": "2027-02-20",
+      "hora": null,
+      "local": {
+        "id": "17084",
+        "nombre": "TABIRAKO 2015 M",
+        "escudo": "img/escudos/17084.jpg"
+      },
+      "visitante": {
+        "id": "17086",
+        "nombre": "LA SALLE 2015",
+        "escudo": "img/escudos/17086.png"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104140",
+      "jornada": 14,
+      "fecha": "2027-02-20",
+      "hora": "09:30",
+      "local": {
+        "id": "17083",
+        "nombre": "SANTURTZI MINI MORADO MASC",
+        "escudo": "img/escudos/17083.png"
+      },
+      "visitante": {
+        "id": "17087",
+        "nombre": "Leioa SBT",
+        "escudo": "img/escudos/17087.png"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104141",
+      "jornada": 14,
+      "fecha": "2027-02-20",
+      "hora": null,
+      "local": {
+        "id": "17082",
+        "nombre": "LOIOLA INDAUTXU 2015",
+        "escudo": "img/escudos/17082.png"
+      },
+      "visitante": {
+        "id": "17079",
+        "nombre": "BERRIO - OTXOA 15",
+        "escudo": null
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104142",
+      "jornada": 14,
+      "fecha": "2027-02-20",
+      "hora": "11:00",
+      "local": {
+        "id": "17081",
+        "nombre": "Ibaizabal Berdea",
+        "escudo": "img/escudos/17081.png"
+      },
+      "visitante": {
+        "id": "17080",
+        "nombre": "REHABILITACIONES BILCONVER XXI",
+        "escudo": null
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104143",
+      "jornada": 15,
+      "fecha": "2027-02-27",
+      "hora": "10:20",
+      "local": {
+        "id": "17080",
+        "nombre": "REHABILITACIONES BILCONVER XXI",
+        "escudo": null
+      },
+      "visitante": {
+        "id": "17082",
+        "nombre": "LOIOLA INDAUTXU 2015",
+        "escudo": "img/escudos/17082.png"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104144",
+      "jornada": 15,
+      "fecha": "2027-02-27",
+      "hora": null,
+      "local": {
+        "id": "17079",
+        "nombre": "BERRIO - OTXOA 15",
+        "escudo": null
+      },
+      "visitante": {
+        "id": "17083",
+        "nombre": "SANTURTZI MINI MORADO MASC",
+        "escudo": "img/escudos/17083.png"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104145",
+      "jornada": 15,
+      "fecha": "2027-02-27",
+      "hora": "11:00",
+      "local": {
+        "id": "17087",
+        "nombre": "Leioa SBT",
+        "escudo": "img/escudos/17087.png"
+      },
+      "visitante": {
+        "id": "17084",
+        "nombre": "TABIRAKO 2015 M",
+        "escudo": "img/escudos/17084.jpg"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104146",
+      "jornada": 15,
+      "fecha": "2027-02-27",
+      "hora": null,
+      "local": {
+        "id": "17086",
+        "nombre": "LA SALLE 2015",
+        "escudo": "img/escudos/17086.png"
+      },
+      "visitante": {
+        "id": "17085",
+        "nombre": "LA SALLE 2016",
+        "escudo": "img/escudos/17085.png"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104147",
+      "jornada": 16,
+      "fecha": "2027-03-06",
+      "hora": null,
+      "local": {
+        "id": "17085",
+        "nombre": "LA SALLE 2016",
+        "escudo": "img/escudos/17085.png"
+      },
+      "visitante": {
+        "id": "17087",
+        "nombre": "Leioa SBT",
+        "escudo": "img/escudos/17087.png"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104148",
+      "jornada": 16,
+      "fecha": "2027-03-06",
+      "hora": null,
+      "local": {
+        "id": "17084",
+        "nombre": "TABIRAKO 2015 M",
+        "escudo": "img/escudos/17084.jpg"
+      },
+      "visitante": {
+        "id": "17079",
+        "nombre": "BERRIO - OTXOA 15",
+        "escudo": null
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104149",
+      "jornada": 16,
+      "fecha": "2027-03-06",
+      "hora": "09:30",
+      "local": {
+        "id": "17083",
+        "nombre": "SANTURTZI MINI MORADO MASC",
+        "escudo": "img/escudos/17083.png"
+      },
+      "visitante": {
+        "id": "17080",
+        "nombre": "REHABILITACIONES BILCONVER XXI",
+        "escudo": null
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104150",
+      "jornada": 16,
+      "fecha": "2027-03-06",
+      "hora": null,
+      "local": {
+        "id": "17082",
+        "nombre": "LOIOLA INDAUTXU 2015",
+        "escudo": "img/escudos/17082.png"
+      },
+      "visitante": {
+        "id": "17081",
+        "nombre": "Ibaizabal Berdea",
+        "escudo": "img/escudos/17081.png"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104151",
+      "jornada": 17,
+      "fecha": "2027-03-13",
+      "hora": "11:00",
+      "local": {
+        "id": "17081",
+        "nombre": "Ibaizabal Berdea",
+        "escudo": "img/escudos/17081.png"
+      },
+      "visitante": {
+        "id": "17083",
+        "nombre": "SANTURTZI MINI MORADO MASC",
+        "escudo": "img/escudos/17083.png"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104152",
+      "jornada": 17,
+      "fecha": "2027-03-13",
+      "hora": "10:20",
+      "local": {
+        "id": "17080",
+        "nombre": "REHABILITACIONES BILCONVER XXI",
+        "escudo": null
+      },
+      "visitante": {
+        "id": "17084",
+        "nombre": "TABIRAKO 2015 M",
+        "escudo": "img/escudos/17084.jpg"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104153",
+      "jornada": 17,
+      "fecha": "2027-03-13",
+      "hora": null,
+      "local": {
+        "id": "17079",
+        "nombre": "BERRIO - OTXOA 15",
+        "escudo": null
+      },
+      "visitante": {
+        "id": "17085",
+        "nombre": "LA SALLE 2016",
+        "escudo": "img/escudos/17085.png"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104154",
+      "jornada": 17,
+      "fecha": "2027-03-13",
+      "hora": "11:00",
+      "local": {
+        "id": "17087",
+        "nombre": "Leioa SBT",
+        "escudo": "img/escudos/17087.png"
+      },
+      "visitante": {
+        "id": "17086",
+        "nombre": "LA SALLE 2015",
+        "escudo": "img/escudos/17086.png"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104155",
+      "jornada": 18,
+      "fecha": "2027-04-10",
+      "hora": null,
+      "local": {
+        "id": "17086",
+        "nombre": "LA SALLE 2015",
+        "escudo": "img/escudos/17086.png"
+      },
+      "visitante": {
+        "id": "17079",
+        "nombre": "BERRIO - OTXOA 15",
+        "escudo": null
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104156",
+      "jornada": 18,
+      "fecha": "2027-04-10",
+      "hora": null,
+      "local": {
+        "id": "17085",
+        "nombre": "LA SALLE 2016",
+        "escudo": "img/escudos/17085.png"
+      },
+      "visitante": {
+        "id": "17080",
+        "nombre": "REHABILITACIONES BILCONVER XXI",
+        "escudo": null
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104157",
+      "jornada": 18,
+      "fecha": "2027-04-10",
+      "hora": null,
+      "local": {
+        "id": "17084",
+        "nombre": "TABIRAKO 2015 M",
+        "escudo": "img/escudos/17084.jpg"
+      },
+      "visitante": {
+        "id": "17081",
+        "nombre": "Ibaizabal Berdea",
+        "escudo": "img/escudos/17081.png"
+      },
+      "marcador": null
+    },
+    {
+      "idMatch": "104158",
+      "jornada": 18,
+      "fecha": "2027-04-10",
+      "hora": "09:30",
+      "local": {
+        "id": "17083",
+        "nombre": "SANTURTZI MINI MORADO MASC",
+        "escudo": "img/escudos/17083.png"
+      },
+      "visitante": {
+        "id": "17082",
+        "nombre": "LOIOLA INDAUTXU 2015",
+        "escudo": "img/escudos/17082.png"
+      },
+      "marcador": null
+    }
+  ],
+  "clasificacion": [],
+  "clasificacionCalculada": false
 }

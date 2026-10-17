@@ -7,6 +7,9 @@
   <meta name="description" content="Calendario de partidos de Leioa SBT, minibasket masculino A.">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#0a5c36">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="img/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="img/escudos/17087.png">
   <link rel="stylesheet" href="css/style.css">
   <script src="js/theme.js"></script>
 </head>
@@ -32,9 +35,22 @@
       <div id="next"></div>
     </section>
 
+    <p id="live-status" class="live-status" role="status" hidden></p>
+
+    <section aria-labelledby="summary-title" id="summary-section" hidden>
+      <h2 id="summary-title" class="section-title">Nuestra temporada</h2>
+      <div id="summary" class="summary"></div>
+    </section>
+
+    <section aria-labelledby="group-title" id="group-section" hidden>
+      <h2 id="group-title" class="section-title">Partidos del grupo</h2>
+      <div id="group" class="group"></div>
+    </section>
+
     <section aria-labelledby="standing-title" id="standing-section" hidden>
       <h2 id="standing-title" class="section-title">Clasificación</h2>
       <div class="table-wrap" id="standing"></div>
+      <p id="standing-note" class="muted note"></p>
     </section>
 
     <section aria-labelledby="all-title">

@@ -1,5 +1,7 @@
-// Lee solo data/partidos.json (y tiempo.json, opcional), ambos locales.
-// Nunca llama a la API de la federación ni a terceros.
+// Lee data/partidos.json (y tiempo.json, opcional), ambos locales.
+// Solo los días con partidos del grupo consulta además la API de la federación (modo en directo, ver live.js).
+import { startLive } from './live.js';
+
 const TZ = 'Europe/Madrid';
 const $ = (id) => document.getElementById(id);
 
@@ -8,6 +10,7 @@ function h(tag, props = {}, ...children) {
   for (const [k, v] of Object.entries(props)) {
     if (v == null || v === false) continue;
     if (k === 'class') el.className = v;
+    else if (k.startsWith('on')) el.addEventListener(k.slice(2), v);
     else el.setAttribute(k, v);
   }
   for (const c of children.flat()) {
@@ -41,12 +44,18 @@ function todayMadrid() {
 const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
 const fmt = (fecha, opts) => new Intl.DateTimeFormat('es-ES', { timeZone: TZ, ...opts }).format(madridToDate(fecha, '12:00'));
 const fechaLarga = (f) => cap(fmt(f, { weekday: 'long', day: 'numeric', month: 'long' }));
+const fechaCorta = (f) => fmt(f, { weekday: 'short', day: 'numeric', month: 'short' }).replaceAll('.', '');
 const franja = (m) => (m.franja === 'T' ? 'Tarde' : 'Mañana');
+const MATCH_MIN = 90;
+
+// ---------- estado ----------
+let data = null;
+let equipo = { id: null, nombre: 'Leioa SBT', escudo: null };
+let tiempo = {};
+let groupRound = null; // jornada que se ve en "Resultados del grupo"
+let timers = [];
 
 // ---------- escudos ----------
-let equipo = { nombre: 'Leioa SBT', escudo: null };
-let tiempo = {};
-
 function hueOf(s) {
   let x = 0;
   for (const c of s) x = (x * 31 + c.charCodeAt(0)) >>> 0;
@@ -67,6 +76,57 @@ function crest(url, name, size = 'md') {
   return img;
 }
 
+// ---------- equipaciones ----------
+// En castellano y en euskera (la federación recibe ambos: "Urdiña", "Horia"…).
+const COLORS = [
+  [/blanc|zuri/, '#ffffff'], [/negr|beltz/, '#161616'], [/verde|berde/, '#1f8f4e'], [/marino/, '#1b2a5c'],
+  [/celeste/, '#7cc4f0'], [/azul|urdin/, '#1e4fd8'], [/granate|grana/, '#7a1f2b'], [/roj|gorri/, '#d42020'],
+  [/amarill|hori/, '#f5cf00'], [/naranja|laranja/, '#f28c00'], [/morad|more|lila|violeta/, '#7b3fb5'],
+  [/gris/, '#8a8a8a'], [/rosa|arros/, '#f08cb4'],
+];
+const plain = (s) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+function colorOf(name) {
+  if (!name) return null;
+  if (/^#[0-9a-f]{3,6}$/i.test(name.trim())) return name.trim();
+  const p = plain(name);
+  return COLORS.find(([re]) => re.test(p))?.[1] ?? null;
+}
+// Familia de color aproximada para avisar de coincidencias (verde = #008000 = "VERDE").
+function family(name) {
+  const c = colorOf(name);
+  if (!c) return null;
+  const hex = c.length === 4 ? `#${[...c.slice(1)].map((x) => x + x).join('')}` : c;
+  const [r, g, b] = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255);
+  const max = Math.max(r, g, b);
+  const min = Math.min(r, g, b);
+  if (max - min < 0.15) return max > 0.8 ? 'blanco' : max < 0.25 ? 'negro' : 'gris';
+  const d = max - min;
+  let hue = max === r ? ((g - b) / d) % 6 : max === g ? (b - r) / d + 2 : (r - g) / d + 4;
+  hue = (hue * 60 + 360) % 360;
+  return ['rojo', 'naranja', 'amarillo', 'verde', 'verde', 'cian', 'azul', 'azul', 'morado', 'rosa', 'rojo', 'rojo'][Math.floor(hue / 30)];
+}
+function swatch(name) {
+  const c = colorOf(name);
+  const label = name && !name.startsWith('#') ? cap(name.toLowerCase()) : null;
+  return h('span', { class: 'kit__piece', title: name ?? '' },
+    c && h('span', { class: 'kit__dot', style: `background:${c}`, 'aria-hidden': 'true' }), label);
+}
+function kitRow(label, k) {
+  if (!k) return null;
+  return h('div', { class: 'kit__row' }, h('span', { class: 'kit__who' }, label),
+    k.camiseta && swatch(k.camiseta), k.pantalon && h('span', { class: 'kit__sep' }, '/'), k.pantalon && swatch(k.pantalon));
+}
+function kitBlock(m) {
+  const e = m.equipacion;
+  if (!e) return null;
+  const clash = e.nuestra?.camiseta && e.rival?.camiseta && family(e.nuestra.camiseta) === family(e.rival.camiseta);
+  return h('div', { class: 'kit' },
+    h('div', { class: 'kit__title' }, '👕 Equipaciones'),
+    kitRow(equipo.nombre, e.nuestra),
+    kitRow(m.rival.nombre, e.rival),
+    clash && h('div', { class: 'kit__warn' }, '⚠️ Camisetas de color parecido: puede que haya que cambiar de equipación.'));
+}
+
 // ---------- piezas ----------
 function mapsUrl(p) {
   const dest =
@@ -78,12 +138,53 @@ function mapsUrl(p) {
 const hasPlace = (p) => p.nombre || p.direccion || p.lat != null;
 const direccion = (p) => [p.direccion, [p.codigoPostal, p.localidad].filter(Boolean).join(' ')].filter(Boolean).join(', ');
 
+const ourScore = (m) => (m.local ? m.marcador.local : m.marcador.visitante);
+const theirScore = (m) => (m.local ? m.marcador.visitante : m.marcador.local);
+const outcome = (m) => (!m.marcador ? null : ourScore(m) > theirScore(m) ? 'V' : ourScore(m) < theirScore(m) ? 'D' : 'E');
+
 function resultBadge(m) {
-  if (!m.marcador) return null;
-  const nuestro = m.local ? m.marcador.local : m.marcador.visitante;
-  const rival = m.local ? m.marcador.visitante : m.marcador.local;
-  if (nuestro > rival) return h('span', { class: 'badge badge--win' }, 'Victoria');
-  return h('span', { class: 'badge' }, nuestro < rival ? 'Derrota' : 'Empate');
+  const o = outcome(m);
+  if (!o) return null;
+  if (o === 'V') return h('span', { class: 'badge badge--win' }, 'Victoria');
+  return h('span', { class: 'badge' }, o === 'D' ? 'Derrota' : 'Empate');
+}
+
+// En juego: hoy, ya ha empezado, sin resultado y dentro de la duración aproximada.
+function isPlayingNow(m) {
+  if (m.marcador || !m.hora || m.fecha !== todayMadrid()) return false;
+  const start = madridToDate(m.fecha, m.hora).getTime();
+  return Date.now() >= start && Date.now() <= start + (MATCH_MIN + 30) * 60_000;
+}
+const liveBadge = (m) => isPlayingNow(m) && h('span', { class: 'badge badge--live' }, '● En juego');
+
+// Último cambio de fecha/hora/pista en las 3 últimas semanas.
+function recentChange(m) {
+  const c = m.cambios?.at(-1);
+  if (!c || m.marcador) return null;
+  return Date.now() - Date.parse(c.detectado) < 21 * 864e5 ? c : null;
+}
+const CAMPO = { fecha: 'Fecha', hora: 'Hora', pista: 'Pista' };
+function changeNote(m) {
+  const c = recentChange(m);
+  if (!c) return null;
+  const val = (v) => (v == null ? 'por confirmar' : c.campo === 'fecha' ? fechaCorta(v) : v);
+  return h('div', { class: 'change' }, h('span', { class: 'badge badge--warn' }, 'Cambiado'),
+    ` ${CAMPO[c.campo]}: antes ${val(c.antes)}, ahora ${val(c.ahora)}`);
+}
+
+// Ida / vuelta contra el mismo rival.
+function otherLeg(m) {
+  const other = data.jornadas.find((j) => j.partido && j.partido.idMatch !== m.idMatch && j.partido.rival.id === m.rival.id)?.partido;
+  if (!other) return null;
+  const isIda = other.jornada < m.jornada;
+  const label = isIda ? 'Ida' : 'Vuelta';
+  if (other.marcador) {
+    const o = outcome(other);
+    return h('div', { class: 'leg' }, `${label}: ${ourScore(other)}-${theirScore(other)} `,
+      h('span', { class: `dot dot--${o}` }, o === 'V' ? 'ganado' : o === 'D' ? 'perdido' : 'empate'),
+      ` (J${other.jornada}, ${other.local ? 'en casa' : 'fuera'})`);
+  }
+  return h('div', { class: 'leg' }, `${label}: J${other.jornada}, ${other.fecha ? fechaCorta(other.fecha) : 'fecha por confirmar'} (${other.local ? 'en casa' : 'fuera'})`);
 }
 
 function weatherChip(m) {
@@ -118,21 +219,30 @@ function nextCard(j) {
   const mid = m.marcador
     ? h('span', { class: 'vs-score' }, `${m.marcador.local} - ${m.marcador.visitante}`)
     : h('span', { class: 'vs-badge' }, 'VS');
+  const today = m.fecha === todayMadrid();
 
-  const countdown = m.hora
-    ? h('div', { class: 'cd', role: 'timer' },
-        ...[['d', 'días'], ['h', 'horas'], ['m', 'min'], ['s', 'seg']].map(([k, l]) =>
-          h('div', { class: 'cd__unit' }, h('b', { id: `cd-${k}` }, '0'), h('span', {}, l))))
-    : h('div', { class: 'cd cd--text', id: 'cd-text', role: 'timer' });
+  let countdown = null;
+  if (m.marcador) countdown = h('div', { class: 'cd cd--text' }, 'Final ', resultBadge(m));
+  else if (isPlayingNow(m)) countdown = h('div', { class: 'cd cd--text cd--live' }, '● En juego');
+  else if (m.hora) {
+    countdown = h('div', { class: 'cd', role: 'timer' },
+      ...[['d', 'días'], ['h', 'horas'], ['m', 'min'], ['s', 'seg']].map(([k, l]) =>
+        h('div', { class: 'cd__unit' }, h('b', { id: `cd-${k}` }, '0'), h('span', {}, l))));
+  } else countdown = h('div', { class: 'cd cd--text', id: 'cd-text', role: 'timer' });
 
-  return h('article', { class: 'next' },
-    h('div', { class: 'next__label' }, h('span', {}, `Próximo partido · J${j.jornada}`), h('span', { class: 'badge' }, m.local ? 'En casa' : 'Fuera')),
+  return h('article', { class: `next${today ? ' next--today' : ''}` },
+    h('div', { class: 'next__label' },
+      h('span', {}, `${today ? 'Hoy' : 'Próximo partido'} · J${j.jornada}`),
+      h('span', { class: 'badge' }, m.local ? 'En casa' : 'Fuera')),
+    changeNote(m),
     h('div', { class: 'vs-row' },
       side(m.equipoLocal, escudoDe(true), us(true)), mid, side(m.equipoVisitante, escudoDe(false), us(false))),
     h('div', { class: 'when-big' }, fechaLarga(m.fecha), m.hora ? ` · ${m.hora}` : '',
       m.convocatoria && h('small', {}, `Convocatoria a las ${m.convocatoria}`),
       m.horaPendiente && h('small', {}, `${franja(m)} · hora por confirmar`)),
     countdown,
+    otherLeg(m),
+    kitBlock(m),
     h('div', { class: 'place' },
       h('div', { class: 'place__name' }, p.nombre ?? 'Pista por confirmar'),
       direccion(p) && h('small', {}, direccion(p)),
@@ -153,19 +263,22 @@ function dateBox(fecha) {
 function matchCard(j, { past }) {
   const m = j.partido;
   const p = m.pista;
-  return h('article', { class: `card${past ? ' card--past' : ''}` },
+  return h('article', { class: `card${past ? ' card--past' : ''}${isPlayingNow(m) ? ' card--live' : ''}` },
     dateBox(m.fecha),
     h('div', {},
       h('div', { class: 'card__top' },
         h('span', {}, `Jornada ${j.jornada}`),
-        h('span', {}, resultBadge(m), ' ', h('span', { class: 'badge' }, m.local ? 'Local' : 'Visitante'))),
+        h('span', {}, liveBadge(m), resultBadge(m), recentChange(m) && h('span', { class: 'badge badge--warn' }, 'Cambiado'),
+          ' ', h('span', { class: 'badge' }, m.local ? 'Local' : 'Visitante'))),
       h('div', { class: 'opp' },
         crest(m.rival.escudo, m.rival.nombre, 'md'),
         h('span', { class: 'opp__name' }, `${m.local ? 'vs' : '@'} ${m.rival.nombre}`),
         m.marcador && h('span', { class: 'score' }, `${m.marcador.local} - ${m.marcador.visitante}`)),
       h('div', { class: 'card__time' }, m.hora ?? `${franja(m)} · hora por confirmar`,
-        m.convocatoria && h('small', {}, ` · convocatoria ${m.convocatoria}`)),
+        m.convocatoria && !past && h('small', {}, ` · convocatoria ${m.convocatoria}`)),
       h('div', { class: 'venue' }, [p.nombre ?? 'Pista por confirmar', p.localidad].filter(Boolean).join(' · ')),
+      !past && changeNote(m),
+      !past && otherLeg(m),
       !past && extras(m, { weather: true }),
       !past && mapsButton(p, 'btn btn--sm')));
 }
@@ -178,9 +291,26 @@ function otherCard(j) {
       h('div', { class: 'state' }, j.estado === 'descansa' ? 'Descansa' : 'Pendiente de asignar')));
 }
 
+// ---------- resumen de la temporada ----------
+function renderSummary() {
+  const played = data.jornadas.filter((j) => j.partido?.marcador).map((j) => j.partido);
+  if (!played.length) { $('summary-section').hidden = true; return; }
+  const v = played.filter((m) => outcome(m) === 'V').length;
+  const d = played.filter((m) => outcome(m) === 'D').length;
+  const pf = played.reduce((s, m) => s + ourScore(m), 0);
+  const pc = played.reduce((s, m) => s + theirScore(m), 0);
+  const stat = (n, l) => h('div', { class: 'stat' }, h('b', {}, String(n)), h('span', {}, l));
+  $('summary').replaceChildren(
+    h('div', { class: 'stats' }, stat(played.length, 'jugados'), stat(v, 'victorias'), stat(d, 'derrotas'),
+      stat(`${pf}-${pc}`, 'puntos'), stat(Math.round(pf / played.length), 'media a favor')),
+    h('div', { class: 'streak' }, h('span', { class: 'muted' }, 'Últimos: '),
+      played.slice(-5).map((m) => h('span', { class: `dot dot--${outcome(m)}`, title: `J${m.jornada} vs ${m.rival.nombre}: ${ourScore(m)}-${theirScore(m)}` }, outcome(m)))));
+  $('summary-section').hidden = false;
+}
+
 // ---------- clasificación ----------
 function renderStanding(rows) {
-  if (!rows?.length) return;
+  if (!rows?.length) { $('standing-section').hidden = true; return; }
   const cols = [
     ['posicion', '#'], ['nombre', 'Equipo'], ['jugados', 'PJ'], ['ganados', 'G'], ['perdidos', 'P'],
     ['puntosFavor', 'PF'], ['puntosContra', 'PC'], ['puntos', 'Pts'],
@@ -195,11 +325,60 @@ function renderStanding(rows) {
     h('thead', {}, h('tr', {}, cols.map(([, t]) => h('th', { scope: 'col' }, t)))),
     h('tbody', {}, rows.map((r, i) =>
       h('tr', { class: r.esNuestro ? 'us' : null }, cols.map(([k]) => h('td', {}, cell(r, k, i))))))));
+  $('standing-note').textContent = data.clasificacionCalculada
+    ? 'Calculada con los resultados publicados (2 puntos por victoria, 1 por derrota); la oficial puede variar.'
+    : '';
   $('standing-section').hidden = false;
+}
+
+// ---------- resultados del grupo ----------
+function defaultRound(matches) {
+  const today = todayMadrid();
+  const todays = matches.find((m) => m.fecha === today);
+  if (todays) return todays.jornada;
+  const lastPlayed = matches.filter((m) => m.marcador).at(-1);
+  if (lastPlayed) return lastPlayed.jornada;
+  return matches.find((m) => m.fecha && m.fecha >= today)?.jornada ?? matches[0]?.jornada ?? null;
+}
+
+function groupRow(m) {
+  const ours = m.local.id === equipo.id || m.visitante.id === equipo.id;
+  const team = (t, sc) => h('div', { class: `g-team${t.id === equipo.id ? ' g-team--us' : ''}` },
+    crest(t.escudo, t.nombre, 'sm'), h('span', { class: 'g-name' }, t.nombre), h('b', { class: 'g-score' }, sc ?? ''));
+  const playing = isPlayingNow({ ...m, marcador: m.marcador });
+  return h('li', { class: `g-match${ours ? ' g-match--us' : ''}` },
+    h('div', { class: 'g-meta' },
+      m.fecha ? `${fechaCorta(m.fecha)}${m.hora ? ` · ${m.hora}` : ''}` : 'Fecha por confirmar',
+      playing && h('span', { class: 'badge badge--live' }, '● En juego'),
+      m.marcador && h('span', { class: 'badge' }, 'Final')),
+    team(m.local, m.marcador?.local), team(m.visitante, m.marcador?.visitante));
+}
+
+function renderGroup() {
+  const all = data.grupoPartidos ?? [];
+  if (!all.length) { $('group-section').hidden = true; return; }
+  const rounds = [...new Set(all.map((m) => m.jornada))].sort((a, b) => a - b);
+  if (groupRound == null || !rounds.includes(groupRound)) groupRound = defaultRound(all);
+  const idx = rounds.indexOf(groupRound);
+  // Leioa primero; el resto por hora.
+  const list = all.filter((m) => m.jornada === groupRound).sort((a, b) =>
+    (b.local.id === equipo.id || b.visitante.id === equipo.id) - (a.local.id === equipo.id || a.visitante.id === equipo.id) ||
+    `${a.fecha}${a.hora}`.localeCompare(`${b.fecha}${b.hora}`));
+  const rest = data.jornadas.find((j) => j.jornada === groupRound)?.estado === 'descansa';
+  const go = (d) => () => { groupRound = rounds[idx + d]; renderGroup(); };
+  $('group').replaceChildren(...h('div', {},
+    h('div', { class: 'g-nav' },
+      h('button', { class: 'g-btn', type: 'button', disabled: idx <= 0 ? 'disabled' : null, onclick: go(-1), 'aria-label': 'Jornada anterior' }, '‹'),
+      h('span', {}, `Jornada ${groupRound}`),
+      h('button', { class: 'g-btn', type: 'button', disabled: idx >= rounds.length - 1 ? 'disabled' : null, onclick: go(1), 'aria-label': 'Jornada siguiente' }, '›')),
+    rest && h('p', { class: 'muted g-rest' }, `${equipo.nombre} descansa esta jornada.`),
+    h('ul', { class: 'g-list' }, list.map(groupRow))).childNodes);
+  $('group-section').hidden = false;
 }
 
 // ---------- cuenta atrás ----------
 function startCountdown(m) {
+  if (m.marcador || isPlayingNow(m)) return;
   if (!m.hora) {
     const el = $('cd-text');
     const tick = () => {
@@ -207,27 +386,67 @@ function startCountdown(m) {
       el.textContent = days <= 0 ? '¡Hoy!' : days === 1 ? 'Mañana' : `Faltan ${days} días`;
     };
     tick();
-    setInterval(tick, 60_000);
+    timers.push(setInterval(tick, 60_000));
     return;
   }
   const target = madridToDate(m.fecha, m.hora);
-  const set = (k, v) => { $(`cd-${k}`).textContent = String(v).padStart(2, '0'); };
+  const set = (k, v) => { const el = $(`cd-${k}`); if (el) el.textContent = String(v).padStart(2, '0'); };
   const tick = () => {
     let s = Math.max(0, Math.floor((target - Date.now()) / 1000));
+    if (s === 0) { render(); return; } // empieza el partido: pasa a "En juego"
     set('d', Math.floor(s / 86400)); s %= 86400;
     set('h', Math.floor(s / 3600)); s %= 3600;
     set('m', Math.floor(s / 60));
     set('s', s % 60);
   };
   tick();
-  setInterval(tick, 1000);
+  timers.push(setInterval(tick, 1000));
 }
 
-// ---------- main ----------
-const isUpcoming = (j, today) => !j.partido.marcador && j.partido.fecha >= today;
+// ---------- render ----------
+// Un partido sigue destacado todo el día en que se juega, aunque ya tenga resultado.
+const isUpcoming = (j, today) => j.partido.fecha >= today && (!j.partido.marcador || j.partido.fecha === today);
+
+function render() {
+  timers.forEach(clearInterval);
+  timers = [];
+  const today = todayMadrid();
+  const next = data.jornadas.find((j) => j.estado === 'partido' && isUpcoming(j, today));
+  if (next) {
+    $('next').replaceChildren(nextCard(next));
+    $('next-section').hidden = false;
+    document.querySelector('.main').style.marginTop = '';
+    startCountdown(next.partido);
+  } else {
+    $('next-section').hidden = true;
+    document.querySelector('.main').style.marginTop = '0';
+  }
+
+  renderSummary();
+  renderGroup();
+  renderStanding(data.clasificacion);
+
+  $('list').replaceChildren(
+    ...data.jornadas.map((j) =>
+      j.estado === 'partido' ? matchCard(j, { past: !isUpcoming(j, today) }) : otherCard(j)),
+  );
+}
+
+// Aplica marcadores llegados en directo (idMatch -> {local, visitante}) y vuelve a pintar.
+function applyLive(scores) {
+  let changed = false;
+  for (const m of data.grupoPartidos ?? []) {
+    const s = scores.get(m.idMatch);
+    if (s && JSON.stringify(s) !== JSON.stringify(m.marcador)) { m.marcador = s; changed = true; }
+  }
+  for (const j of data.jornadas) {
+    const s = j.partido && scores.get(j.partido.idMatch);
+    if (s && JSON.stringify(s) !== JSON.stringify(j.partido.marcador)) { j.partido.marcador = s; changed = true; }
+  }
+  if (changed) render();
+}
 
 async function main() {
-  let data;
   try {
     const res = await fetch('data/partidos.json', { cache: 'no-cache' });
     if (!res.ok) throw new Error(res.status);
@@ -253,25 +472,18 @@ async function main() {
   const y = Number(data.grupo?.temporada);
   if (y) $('subtitle').textContent = `Minibasket masculino A · Temporada ${y}/${String((y + 1) % 100).padStart(2, '0')}`;
 
-  const today = todayMadrid();
-  const next = data.jornadas.find((j) => j.estado === 'partido' && isUpcoming(j, today));
-  if (next) {
-    $('next').replaceChildren(nextCard(next));
-    $('next-section').hidden = false;
-    startCountdown(next.partido);
-  } else {
-    document.querySelector('.main').style.marginTop = '0';
-  }
-
-  renderStanding(data.clasificacion);
-
-  $('list').replaceChildren(
-    ...data.jornadas.map((j) =>
-      j.estado === 'partido' ? matchCard(j, { past: !isUpcoming(j, today) }) : otherCard(j)),
-  );
+  render();
 
   if (data.generatedAt) {
     $('updated').textContent = `Datos actualizados: ${new Intl.DateTimeFormat('es-ES', { timeZone: TZ, dateStyle: 'medium', timeStyle: 'short' }).format(new Date(data.generatedAt))}`;
+  }
+
+  const today = todayMadrid();
+  if ((data.grupoPartidos ?? []).some((m) => m.fecha === today)) {
+    startLive({
+      onScores: applyLive,
+      onStatus: (text) => { $('live-status').textContent = text; $('live-status').hidden = !text; },
+    });
   }
 }
 
@@ -285,5 +497,10 @@ $('theme-toggle').addEventListener('click', () => {
   root.dataset.theme = next;
   try { localStorage.setItem('tema', next); } catch {}
 });
+
+// ---------- app instalable ----------
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').catch(() => {});
+}
 
 main();

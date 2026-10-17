@@ -1,13 +1,16 @@
 // Descarga el JSON de la federación, lo normaliza y escribe public/data/partidos.json.
-// La URL base solo trae dos jornadas con partidos; el resto se pide con /N (cada respuesta trae N y N+1),
-// así que son ~9 peticiones por ejecución, espaciadas. Si algo falla, el partidos.json anterior se conserva.
+// Una sola petición: getAllGamesByGrupWithMatchRecords trae la temporada entera del grupo
+// (la URL de FVB_URL, .../resultats/<grupo>, solo trae dos jornadas). Si algo falla, el partidos.json anterior se conserva.
 // La URL (FVB_URL) nunca se imprime: contiene un token.
+// Del acta (matchRecord) y de las fichas de equipo NO se guarda nada: incluyen datos de los jugadores (menores).
 import { readFile, writeFile, rename, mkdir } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = join(ROOT, 'public', 'data', 'partidos.json');
+const SEASONS_DIR = join(ROOT, 'public', 'data', 'temporadas');
+const LIVE_CONFIG = join(ROOT, 'public', 'data', 'directo.json'); // no se sube a git (ver .gitignore)
 const PISTAS = join(ROOT, 'data', 'pistas.json');
 const CRESTS_DIR = join(ROOT, 'public', 'img', 'escudos');
 
@@ -46,28 +49,11 @@ async function download(url) {
   }
 }
 
-const roundsOf = (raw) => raw?.messageData?.rounds ?? {};
-const hasMatches = (round) => Object.keys(round?.matches ?? {}).length > 0;
-
-// Completa las jornadas que la URL base devuelve vacías pidiendo `${url}/N`.
-async function downloadAll(url) {
-  const raw = await download(url);
-  const rounds = roundsOf(raw);
-  const base = url.replace(/\/+$/, '');
-  for (const n of Object.keys(rounds).map(Number).sort((a, b) => a - b)) {
-    if (hasMatches(rounds[n])) continue; // ya vino en la base o en una petición anterior
-    await new Promise((r) => setTimeout(r, 500)); // sin ráfagas contra la API
-    let extra;
-    try {
-      extra = await download(`${base}/${n}`);
-    } catch (err) {
-      throw new Error(`jornada ${n}: ${err.message}`);
-    }
-    for (const [k, round] of Object.entries(roundsOf(extra))) {
-      if (k in rounds && !hasMatches(rounds[k]) && hasMatches(round)) rounds[k] = round;
-    }
-  }
-  return raw;
+// .../FCBQWeb/resultats/2924 -> .../FCBQWeb/getAllGamesByGrupWithMatchRecords/2924
+function seasonUrl(url) {
+  const m = url.match(/^(.*\/FCBQWeb\/)(?:resultats|getAllGamesByGrupWithMatchRecords)\/(\d+)\/?$/);
+  if (!m) throw new Error('FVB_URL no tiene la forma .../FCBQWeb/resultats/<grupo>');
+  return `${m[1]}getAllGamesByGrupWithMatchRecords/${m[2]}`;
 }
 
 // ---------- normalización ----------
@@ -76,6 +62,7 @@ const num = (v) => {
   const n = Number.parseFloat(v);
   return Number.isFinite(n) ? n : null;
 };
+const matchesOf = (round) => Object.values(round?.matches ?? {});
 
 function minusMinutes(hhmm, min) {
   const [h, m] = hhmm.split(':').map(Number);
@@ -83,11 +70,23 @@ function minusMinutes(hhmm, min) {
   return `${String(Math.floor(t / 60)).padStart(2, '0')}:${String(t % 60).padStart(2, '0')}`;
 }
 
-function normalizeMatch(m, pistas, crests) {
+function when(m) {
   const [fecha, horaRaw = ''] = String(m.matchDay).split(' ');
   const hhmm = horaRaw.slice(0, 5);
   // 00:00 y 23:59 son marcadores de "hora por confirmar".
   const horaPendiente = !hhmm || hhmm === '00:00' || hhmm === '23:59';
+  return { fecha, hora: horaPendiente ? null : hhmm, horaPendiente };
+}
+
+const score = (m) =>
+  m.localScore !== null && m.localScore !== undefined && m.visitorScore !== null && m.visitorScore !== undefined
+    ? { local: Number(m.localScore), visitante: Number(m.visitorScore) }
+    : null;
+
+const kit = (shirt, pants) => (clean(shirt) || clean(pants) ? { camiseta: clean(shirt), pantalon: clean(pants) } : null);
+
+function normalizeMatch(m, pistas, crests) {
+  const { fecha, hora, horaPendiente } = when(m);
   const local = String(m.idLocalTeam) === TEAM_ID;
 
   const pista = pistas[m.idField] ?? pistas[m.nameField] ?? {};
@@ -96,13 +95,14 @@ function normalizeMatch(m, pistas, crests) {
   const lat = apiLat ?? num(pista.lat);
   const lng = apiLng ?? num(pista.lng);
 
-  const played = m.localScore !== null && m.visitorScore !== null;
+  const kitLocal = kit(m.shirtColorLocalTeam, m.pantsColorLocalTeam);
+  const kitVisitor = kit(m.shirtColorVisitorTeam, m.pantsColorVisitorTeam);
   return {
     idMatch: String(m.idMatch),
     jornada: Number(m.numMatchDay),
     fecha,
-    hora: horaPendiente ? null : hhmm,
-    convocatoria: horaPendiente ? null : minusMinutes(hhmm, CONVOCATORIA_MIN),
+    hora,
+    convocatoria: hora ? minusMinutes(hora, CONVOCATORIA_MIN) : null,
     horaPendiente,
     franja: m.dayTime === 'T' ? 'T' : 'M', // M = mañana, T = tarde
     local,
@@ -113,6 +113,9 @@ function normalizeMatch(m, pistas, crests) {
     },
     equipoLocal: m.nameLocalTeam,
     equipoVisitante: m.nameVisitorTeam,
+    equipacion: kitLocal || kitVisitor
+      ? { nuestra: local ? kitLocal : kitVisitor, rival: local ? kitVisitor : kitLocal }
+      : null,
     pista: {
       id: clean(m.idField),
       nombre: clean(m.nameField),
@@ -125,25 +128,38 @@ function normalizeMatch(m, pistas, crests) {
       notas: clean(pista.notas),
       foto: clean(pista.foto),
     },
-    marcador: played
-      ? { local: Number(m.localScore), visitante: Number(m.visitorScore) }
-      : null,
+    marcador: score(m),
+    cambios: [],
   };
 }
 
-// Clasificación: la API la devuelve vacía por ahora, así que el formato real se desconoce.
-// Se aceptan varios nombres de campo habituales; lo que no se reconozca queda en null.
+// Partido de otro equipo del grupo: solo lo necesario para resultados y clasificación.
+function groupMatch(m, crests) {
+  const { fecha, hora } = when(m);
+  const team = (id, nombre) => ({ id: String(id), nombre, escudo: crests[String(id)] ?? null });
+  return {
+    idMatch: String(m.idMatch),
+    jornada: Number(m.numMatchDay),
+    fecha,
+    hora,
+    local: team(m.idLocalTeam, m.nameLocalTeam),
+    visitante: team(m.idVisitorTeam, m.nameVisitorTeam),
+    marcador: score(m),
+  };
+}
+
+// Formato real del standing de la API (visto en otros grupos con partidos jugados).
 const STANDING_FIELDS = {
-  id: ['idTeam', 'idEquip'],
-  nombre: ['nameTeam', 'teamName', 'name'],
-  posicion: ['position', 'pos', 'order', 'classification'],
-  jugados: ['matchesPlayed', 'played', 'gamesPlayed', 'pj'],
-  ganados: ['wins', 'won', 'matchesWon', 'pg'],
-  perdidos: ['losses', 'lost', 'matchesLost', 'pp'],
-  empatados: ['draws', 'tied', 'matchesTied', 'pe'],
-  puntosFavor: ['pointsFor', 'scoredPoints', 'favor', 'pf'],
-  puntosContra: ['pointsAgainst', 'concededPoints', 'against', 'pc'],
-  puntos: ['points', 'puntos', 'pts'],
+  id: ['idTeam'],
+  nombre: ['teamName', 'nameTeam'],
+  posicion: ['position'],
+  jugados: ['matchPlayed'],
+  ganados: ['matchWin'],
+  perdidos: ['matchLost'],
+  empatados: ['matchTie'],
+  puntosFavor: ['matchScoreFavour'],
+  puntosContra: ['matchScoreAgainst'],
+  puntos: ['standingScore'],
 };
 
 function normalizeStanding(standing) {
@@ -160,15 +176,38 @@ function normalizeStanding(standing) {
     return o;
   });
   if (out.every((r) => r.nombre === null)) {
-    // Aviso útil para ajustar el mapeo cuando la API empiece a rellenarlo (solo nombres de campo).
+    // Aviso útil para ajustar el mapeo si la API cambia (solo nombres de campo).
     console.warn(`! standing no reconocido; campos recibidos: ${Object.keys(rows[0] ?? {}).join(', ')}`);
   }
-  const hasPos = out.every((r) => r.posicion !== null);
-  return out.sort((a, b) =>
-    hasPos
-      ? a.posicion - b.posicion
-      : (b.puntos ?? 0) - (a.puntos ?? 0) ||
-        (b.puntosFavor ?? 0) - (b.puntosContra ?? 0) - ((a.puntosFavor ?? 0) - (a.puntosContra ?? 0)));
+  return out.sort((a, b) => (a.posicion ?? 99) - (b.posicion ?? 99));
+}
+
+// Si la API aún no publica clasificación pero ya hay resultados, se calcula (2 pts victoria, 1 derrota).
+function computeStanding(matches) {
+  const played = matches.filter((m) => m.marcador);
+  if (played.length === 0) return [];
+  const t = new Map();
+  const row = (team) => {
+    if (!t.has(team.id)) {
+      t.set(team.id, { id: team.id, nombre: team.nombre, posicion: null, jugados: 0, ganados: 0, perdidos: 0,
+        empatados: 0, puntosFavor: 0, puntosContra: 0, puntos: 0, esNuestro: team.id === TEAM_ID });
+    }
+    return t.get(team.id);
+  };
+  for (const m of matches) { row(m.local); row(m.visitante); }
+  for (const m of played) {
+    const sides = [[row(m.local), m.marcador.local, m.marcador.visitante], [row(m.visitante), m.marcador.visitante, m.marcador.local]];
+    for (const [r, pf, pc] of sides) {
+      r.jugados++;
+      r.puntosFavor += pf;
+      r.puntosContra += pc;
+      if (pf > pc) { r.ganados++; r.puntos += 2; } else if (pf < pc) { r.perdidos++; r.puntos += 1; } else { r.empatados++; r.puntos += 1; }
+    }
+  }
+  const out = [...t.values()].sort((a, b) =>
+    b.puntos - a.puntos || (b.puntosFavor - b.puntosContra) - (a.puntosFavor - a.puntosContra) || b.puntosFavor - a.puntosFavor);
+  out.forEach((r, i) => { r.posicion = i + 1; });
+  return out;
 }
 
 function normalize(raw, pistas, crests) {
@@ -176,44 +215,82 @@ function normalize(raw, pistas, crests) {
     throw new Error('formato inesperado: falta result "OK" o messageData.rounds');
   }
   const md = raw.messageData;
-  const lastRound = Number(md.lastRound) || null;
-  const restIds = new Set();
-  const restByRound = new Map();
-  if (lastRound) {
-    restByRound.set(lastRound, Object.keys(md.restCurrentRound ?? {}));
-    restByRound.set(lastRound + 1, Object.keys(md.restNextRound ?? {}));
-  }
-  for (const [r, ids] of restByRound) if (ids.includes(TEAM_ID)) restIds.add(r);
+  const restIds = new Set(
+    Object.entries(md.rest ?? {})
+      .filter(([, ids]) => Object.values(ids ?? {}).map(String).includes(TEAM_ID))
+      .map(([r]) => Number(r)),
+  );
 
-  const jornadas = Object.entries(md.rounds)
+  const rounds = Object.entries(md.rounds)
     .map(([k, round]) => ({ n: Number(k), round }))
-    .sort((a, b) => a.n - b.n)
-    .map(({ n, round }) => {
-      const matches = Object.values(round.matches ?? {});
-      const base = { jornada: n, fecha: round.date ?? null };
-      const ours = matches.find(
-        (m) => String(m.idLocalTeam) === TEAM_ID || String(m.idVisitorTeam) === TEAM_ID,
-      );
-      if (ours) return { ...base, estado: 'partido', partido: normalizeMatch(ours, pistas, crests) };
-      // Jornada asignada en la que no aparecemos, o la API lo indica: descansamos.
-      if (matches.length > 0 || restIds.has(n)) return { ...base, estado: 'descansa' };
-      return { ...base, estado: 'pendiente' };
-    });
+    .sort((a, b) => a.n - b.n);
+
+  const jornadas = rounds.map(({ n, round }) => {
+    const matches = matchesOf(round);
+    const base = { jornada: n, fecha: round.date ?? null };
+    const ours = matches.find(
+      (m) => String(m.idLocalTeam) === TEAM_ID || String(m.idVisitorTeam) === TEAM_ID,
+    );
+    if (ours) return { ...base, estado: 'partido', partido: normalizeMatch(ours, pistas, crests) };
+    // Jornada asignada en la que no aparecemos, o la API lo indica: descansamos.
+    if (matches.length > 0 || restIds.has(n)) return { ...base, estado: 'descansa' };
+    return { ...base, estado: 'pendiente' };
+  });
+
+  const grupoPartidos = rounds.flatMap(({ round }) => matchesOf(round).map((m) => groupMatch(m, crests)));
+  const apiStanding = normalizeStanding(md.standing);
+  const clasificacion = apiStanding.length ? apiStanding : computeStanding(grupoPartidos);
 
   return {
     generatedAt: new Date().toISOString(),
     equipo: { id: TEAM_ID, nombre: TEAM_NAME, escudo: crests[TEAM_ID] ?? null },
     grupo: {
+      id: clean(md.group?.idGroup),
       nombre: md.group?.nameGroup ?? null,
       competicion: md.group?.competitionName ?? null,
       categoria: md.group?.categoryName ?? null,
       temporada: md.group?.season ?? null,
     },
-    jornadaActual: lastRound,
+    jornadaActual: Number(md.lastRound) || null,
     totalJornadas: Number(md.totalRounds) || jornadas.length,
     jornadas,
-    clasificacion: normalizeStanding(md.standing).map((r) => ({ ...r, escudo: crests[r.id] ?? null })),
+    grupoPartidos,
+    clasificacion: clasificacion.map((r) => ({ ...r, escudo: crests[r.id] ?? null })),
+    clasificacionCalculada: !apiStanding.length && clasificacion.length > 0,
   };
+}
+
+// ---------- cambios de fecha, hora o pista ----------
+// Se compara con el partidos.json anterior; los cambios se acumulan (el workflow sube el JSON a git).
+const TRACKED = [
+  ['fecha', (m) => m.fecha],
+  ['hora', (m) => m.hora],
+  ['pista', (m) => m.pista?.nombre ?? null],
+];
+
+function trackChanges(data, previous) {
+  const prevById = new Map(
+    (previous?.jornadas ?? []).filter((j) => j.partido).map((j) => [j.partido.idMatch, j.partido]),
+  );
+  const now = data.generatedAt;
+  let n = 0;
+  for (const j of data.jornadas) {
+    const m = j.partido;
+    if (!m) continue;
+    const before = prevById.get(m.idMatch);
+    if (!before) continue;
+    m.cambios = [...(before.cambios ?? [])];
+    if (m.marcador) continue; // los jugados ya no cambian de horario
+    for (const [campo, get] of TRACKED) {
+      const antes = get(before) ?? null;
+      const ahora = get(m) ?? null;
+      if (antes !== ahora) {
+        m.cambios.push({ campo, antes, ahora, detectado: now });
+        n++;
+      }
+    }
+  }
+  if (n) console.log(`! ${n} cambio(s) de fecha/hora/pista detectados.`);
 }
 
 // ---------- escudos ----------
@@ -225,7 +302,7 @@ const MAX_CREST_BYTES = 1_000_000;
 async function syncCrests(raw) {
   const sources = new Map(); // idTeam -> url
   for (const round of Object.values(raw.messageData?.rounds ?? {})) {
-    for (const m of Object.values(round.matches ?? {})) {
+    for (const m of matchesOf(round)) {
       const local = clean(m.logoLocal);
       const visitor = clean(m.logoVisitant ?? m.logoVisitante);
       if (local) sources.set(String(m.idLocalTeam), local);
@@ -267,14 +344,23 @@ async function syncCrests(raw) {
   return result;
 }
 
+async function writeAtomic(path, obj) {
+  await mkdir(dirname(path), { recursive: true });
+  const tmp = `${path}.tmp`;
+  await writeFile(tmp, JSON.stringify(obj, null, 2) + '\n');
+  await rename(tmp, path);
+}
+
 // ---------- main ----------
 const url = process.env.FVB_URL;
 if (!url) fail('Falta FVB_URL. Define la variable en .env (ver .env.example).');
 
 let data;
+let apiUrl;
 try {
+  apiUrl = seasonUrl(url);
   const [raw, pistas] = await Promise.all([
-    downloadAll(url),
+    download(apiUrl),
     readFile(PISTAS, 'utf8').then(JSON.parse, () => ({})),
   ]);
   const crests = await syncCrests(raw);
@@ -283,19 +369,25 @@ try {
   fail(err.message);
 }
 
-// Si nada cambia (salvo generatedAt) no se reescribe, para no ensuciar commits cada hora.
+// Para el modo "en directo" de la web (el navegador consulta la API los días de partido).
+// Es el mismo token público que usa basketbasko.com; el archivo no se sube a git.
+await writeAtomic(LIVE_CONFIG, { url: apiUrl });
+
 let previous = null;
 try {
   previous = JSON.parse(await readFile(OUT, 'utf8'));
 } catch {}
+trackChanges(data, previous);
+
+// Si nada cambia (salvo generatedAt) no se reescribe, para no ensuciar commits cada hora.
 const strip = ({ generatedAt, ...rest }) => JSON.stringify(rest);
 if (previous && strip(previous) === strip(data)) {
   console.log('✓ Sin cambios en los datos.');
 } else {
-  await mkdir(dirname(OUT), { recursive: true });
-  const tmp = `${OUT}.tmp`;
-  await writeFile(tmp, JSON.stringify(data, null, 2) + '\n');
-  await rename(tmp, OUT);
+  await writeAtomic(OUT, data);
+  // Copia por temporada: al empezar la siguiente, la anterior queda como historial.
+  if (data.grupo.temporada) await writeAtomic(join(SEASONS_DIR, `${data.grupo.temporada}.json`), data);
   const n = data.jornadas.filter((j) => j.estado === 'partido').length;
-  console.log(`✓ partidos.json actualizado (${n} partidos asignados de ${data.totalJornadas} jornadas).`);
+  const jugados = data.grupoPartidos.filter((m) => m.marcador).length;
+  console.log(`✓ partidos.json actualizado (${n} partidos nuestros de ${data.totalJornadas} jornadas; ${jugados} resultados en el grupo).`);
 }
