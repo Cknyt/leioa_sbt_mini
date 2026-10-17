@@ -1,8 +1,8 @@
 // Service worker: permite instalar la web y abrirla sin conexión con los últimos datos vistos.
 // Datos (data/*.json): primero red, si falla, caché. Resto de archivos propios: caché y se refresca en segundo plano.
 // Las peticiones a otros dominios (API de la federación en directo, Google Maps) no se tocan.
-const CACHE = 'leioa-mini-v1';
-const SHELL = ['./', 'index.html', 'css/style.css', 'js/app.js', 'js/live.js', 'js/theme.js', 'img/icon.svg', 'manifest.webmanifest'];
+const CACHE = 'leioa-mini-v2';
+const SHELL = ['./', 'index.html', 'css/style.css', 'js/app.js', 'js/live.js', 'js/theme.js', 'img/icon-192.png', 'manifest.webmanifest'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting()));
