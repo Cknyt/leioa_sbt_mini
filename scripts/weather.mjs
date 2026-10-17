@@ -85,6 +85,12 @@ try {
 if (DRY) {
   console.log(JSON.stringify(result, null, 2));
 } else {
+  // Si la previsión no cambia no se reescribe, para no generar un commit en cada ejecución.
+  const prev = await readFile(OUT, 'utf8').then(JSON.parse, () => null);
+  if (prev && JSON.stringify(prev.partidos) === JSON.stringify(result)) {
+    console.log(`✓ tiempo.json sin cambios (${targets.length} previsiones).`);
+    process.exit(0);
+  }
   const out = { generatedAt: new Date().toISOString(), partidos: result };
   const tmp = `${OUT}.tmp`;
   await writeFile(tmp, JSON.stringify(out, null, 2) + '\n');

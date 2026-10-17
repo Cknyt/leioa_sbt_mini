@@ -1,3 +1,5 @@
 .env
 *.tmp
 node_modules/
+# URL de la API con token, la genera update.mjs para el modo en directo
+public/data/directo.json

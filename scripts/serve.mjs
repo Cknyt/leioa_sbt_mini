@@ -8,7 +8,7 @@ const PUBLIC = join(dirname(fileURLToPath(import.meta.url)), '..', 'public');
 const TYPES = {
   '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript',
   '.json': 'application/json', '.ics': 'text/calendar; charset=utf-8',
-  '.png': 'image/png', '.jpg': 'image/jpeg', '.svg': 'image/svg+xml',
+  '.png': 'image/png', '.jpg': 'image/jpeg', '.svg': 'image/svg+xml', '.webmanifest': 'application/manifest+json',
 };
 
 createServer(async (req, res) => {

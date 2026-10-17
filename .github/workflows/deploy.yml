@@ -3,12 +3,13 @@ name: Actualizar y publicar
 on:
   schedule:
     - cron: '7 * * * *' # cada hora, al minuto 7 (evita la hora en punto, que va saturada)
+    - cron: '27,47 7-20 * * 6,0' # fines de semana, más a menudo en horario de partidos (UTC)
   workflow_dispatch:
   push:
     branches: [main]
 
 permissions:
-  contents: read
+  contents: write # para guardar en git el historial de datos (partidos.json, escudos, temporadas)
   pages: write
   id-token: write
 
@@ -29,6 +30,16 @@ jobs:
         run: npm run build
         env:
           FVB_URL: ${{ secrets.FVB_URL }}
+      # Guarda los datos en el repo: así se conserva el historial y se detectan cambios de horario
+      # entre ejecuciones. Un push con GITHUB_TOKEN no vuelve a lanzar este workflow.
+      - name: Guardar datos en git
+        run: |
+          git add public/data public/img/escudos public/calendario.ics
+          if git diff --cached --quiet; then echo "Sin cambios que guardar."; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Datos actualizados"
+          git push
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
