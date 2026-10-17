@@ -292,9 +292,18 @@ function otherCard(j) {
 }
 
 // ---------- resumen de la temporada ----------
+function firstMatchText() {
+  const f = data.jornadas.find((j) => j.partido?.fecha)?.partido.fecha;
+  return f ? `Primer partido: ${fechaLarga(f).toLowerCase()}.` : '';
+}
+
 function renderSummary() {
   const played = data.jornadas.filter((j) => j.partido?.marcador).map((j) => j.partido);
-  if (!played.length) { $('summary-section').hidden = true; return; }
+  if (!played.length) {
+    $('summary').replaceChildren(h('p', { class: 'muted empty' }, `Aún no se ha jugado ningún partido. ${firstMatchText()}`));
+    $('summary-section').hidden = false;
+    return;
+  }
   const v = played.filter((m) => outcome(m) === 'V').length;
   const d = played.filter((m) => outcome(m) === 'D').length;
   const pf = played.reduce((s, m) => s + ourScore(m), 0);
@@ -310,7 +319,12 @@ function renderSummary() {
 
 // ---------- clasificación ----------
 function renderStanding(rows) {
-  if (!rows?.length) { $('standing-section').hidden = true; return; }
+  if (!rows?.length) {
+    $('standing').replaceChildren(h('p', { class: 'muted empty' }, `Aparecerá cuando haya resultados. ${firstMatchText()}`));
+    $('standing-note').textContent = '';
+    $('standing-section').hidden = false;
+    return;
+  }
   const cols = [
     ['posicion', '#'], ['nombre', 'Equipo'], ['jugados', 'PJ'], ['ganados', 'G'], ['perdidos', 'P'],
     ['puntosFavor', 'PF'], ['puntosContra', 'PC'], ['puntos', 'Pts'],

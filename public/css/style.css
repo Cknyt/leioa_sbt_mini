@@ -172,6 +172,8 @@ tbody tr + tr td { border-top: 1px solid var(--border); }
 tr.us { background: var(--highlight); font-weight: 800; }
 
 .note { font-size: .8rem; margin: 6px 4px 0; }
+.empty { margin: 0; padding: 4px 2px; font-size: .92rem; }
+.table-wrap .empty { padding: 14px; }
 .note:empty { display: none; }
 
 /* ---------- en directo y cambios ---------- */
