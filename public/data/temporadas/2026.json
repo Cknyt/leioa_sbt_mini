@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-17T08:36:51.287Z",
+  "generatedAt": "2026-10-19T14:36:07.169Z",
   "equipo": {
     "id": "17087",
     "nombre": "Leioa SBT",
@@ -23,8 +23,8 @@
         "idMatch": "104090",
         "jornada": 1,
         "fecha": "2026-10-24",
-        "hora": "11:00",
-        "convocatoria": "10:15",
+        "hora": "09:00",
+        "convocatoria": "08:15",
         "horaPendiente": false,
         "franja": "M",
         "local": true,
@@ -46,19 +46,32 @@
           }
         },
         "pista": {
-          "id": "138",
-          "nombre": "POL.KANDELAZUBIETA",
-          "direccion": "KANDELAZUBIETA KALEA, S/N",
+          "id": "419",
+          "nombre": "C.P. SAN BARTOLOME",
+          "direccion": "SAN BARTOLOME, 4",
           "codigoPostal": "48940",
           "localidad": "Leioa",
-          "lat": 43.32383,
-          "lng": -2.98428,
+          "lat": null,
+          "lng": null,
           "aparcamiento": null,
           "notas": null,
           "foto": null
         },
         "marcador": null,
-        "cambios": []
+        "cambios": [
+          {
+            "campo": "hora",
+            "antes": "11:00",
+            "ahora": "09:00",
+            "detectado": "2026-10-19T14:36:07.169Z"
+          },
+          {
+            "campo": "pista",
+            "antes": "POL.KANDELAZUBIETA",
+            "ahora": "C.P. SAN BARTOLOME",
+            "detectado": "2026-10-19T14:36:07.169Z"
+          }
+        ]
       }
     },
     {
@@ -767,7 +780,7 @@
       "idMatch": "104087",
       "jornada": 1,
       "fecha": "2026-10-24",
-      "hora": null,
+      "hora": "12:15",
       "local": {
         "id": "17084",
         "nombre": "TABIRAKO 2015 M",
@@ -784,7 +797,7 @@
       "idMatch": "104088",
       "jornada": 1,
       "fecha": "2026-10-24",
-      "hora": null,
+      "hora": "13:00",
       "local": {
         "id": "17085",
         "nombre": "LA SALLE 2016",
@@ -801,7 +814,7 @@
       "idMatch": "104089",
       "jornada": 1,
       "fecha": "2026-10-24",
-      "hora": null,
+      "hora": "11:00",
       "local": {
         "id": "17086",
         "nombre": "LA SALLE 2015",
@@ -818,7 +831,7 @@
       "idMatch": "104090",
       "jornada": 1,
       "fecha": "2026-10-24",
-      "hora": "11:00",
+      "hora": "09:00",
       "local": {
         "id": "17087",
         "nombre": "Leioa SBT",
