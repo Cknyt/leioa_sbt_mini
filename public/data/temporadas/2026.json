@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-24T12:06:47.151Z",
+  "generatedAt": "2026-10-24T14:26:42.254Z",
   "equipo": {
     "id": "17087",
     "nombre": "Leioa SBT",
@@ -814,7 +814,10 @@
         "nombre": "Ibaizabal Berdea",
         "escudo": "img/escudos/17081.png"
       },
-      "marcador": null
+      "marcador": {
+        "local": 53,
+        "visitante": 60
+      }
     },
     {
       "idMatch": "104089",
@@ -2045,9 +2048,24 @@
       "escudo": "img/escudos/17084.jpg"
     },
     {
+      "id": "17081",
+      "nombre": "Ibaizabal Berdea",
+      "posicion": 3,
+      "jugados": 1,
+      "ganados": 1,
+      "perdidos": 0,
+      "empatados": 0,
+      "puntosFavor": 60,
+      "puntosContra": 53,
+      "puntos": 2,
+      "noPresentados": 0,
+      "esNuestro": false,
+      "escudo": "img/escudos/17081.png"
+    },
+    {
       "id": "17080",
       "nombre": "REHABILITACIONES BILCONVER XXI",
-      "posicion": 3,
+      "posicion": 4,
       "jugados": 1,
       "ganados": 1,
       "perdidos": 0,
@@ -2062,7 +2080,7 @@
     {
       "id": "17086",
       "nombre": "LA SALLE 2015",
-      "posicion": 4,
+      "posicion": 5,
       "jugados": 1,
       "ganados": 0,
       "perdidos": 1,
@@ -2075,9 +2093,24 @@
       "escudo": "img/escudos/17086.png"
     },
     {
+      "id": "17085",
+      "nombre": "LA SALLE 2016",
+      "posicion": 6,
+      "jugados": 1,
+      "ganados": 0,
+      "perdidos": 1,
+      "empatados": 0,
+      "puntosFavor": 53,
+      "puntosContra": 60,
+      "puntos": 1,
+      "noPresentados": 0,
+      "esNuestro": false,
+      "escudo": "img/escudos/17085.png"
+    },
+    {
       "id": "17082",
       "nombre": "LOIOLA INDAUTXU 2015",
-      "posicion": 5,
+      "posicion": 7,
       "jugados": 1,
       "ganados": 0,
       "perdidos": 1,
@@ -2092,7 +2125,7 @@
     {
       "id": "17079",
       "nombre": "BERRIO - OTXOA 15",
-      "posicion": 6,
+      "posicion": 8,
       "jugados": 1,
       "ganados": 0,
       "perdidos": 1,
@@ -2103,36 +2136,6 @@
       "noPresentados": 0,
       "esNuestro": false,
       "escudo": null
-    },
-    {
-      "id": "17085",
-      "nombre": "LA SALLE 2016",
-      "posicion": 7,
-      "jugados": 0,
-      "ganados": 0,
-      "perdidos": 0,
-      "empatados": 0,
-      "puntosFavor": 0,
-      "puntosContra": 0,
-      "puntos": 0,
-      "noPresentados": 0,
-      "esNuestro": false,
-      "escudo": "img/escudos/17085.png"
-    },
-    {
-      "id": "17081",
-      "nombre": "Ibaizabal Berdea",
-      "posicion": 8,
-      "jugados": 0,
-      "ganados": 0,
-      "perdidos": 0,
-      "empatados": 0,
-      "puntosFavor": 0,
-      "puntosContra": 0,
-      "puntos": 0,
-      "noPresentados": 0,
-      "esNuestro": false,
-      "escudo": "img/escudos/17081.png"
     },
     {
       "id": "17083",
