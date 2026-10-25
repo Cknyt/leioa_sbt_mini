@@ -1,4 +1,15 @@
 {
-  "generatedAt": "2026-10-19T14:36:07.316Z",
-  "partidos": {}
+  "generatedAt": "2026-10-25T01:05:12.064Z",
+  "partidos": {
+    "104091": {
+      "fecha": "2026-10-31",
+      "horaReferencia": "10:20",
+      "aproximada": false,
+      "temperatura": 15,
+      "probLluvia": 3,
+      "viento": 5,
+      "descripcion": "Nublado",
+      "icono": "☁️"
+    }
+  }
 }
