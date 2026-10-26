@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-24T14:26:42.254Z",
+  "generatedAt": "2026-10-26T12:48:19.523Z",
   "equipo": {
     "id": "17087",
     "nombre": "Leioa SBT",
@@ -1101,7 +1101,7 @@
       "idMatch": "104105",
       "jornada": 5,
       "fecha": "2026-11-21",
-      "hora": null,
+      "hora": "11:00",
       "local": {
         "id": "17079",
         "nombre": "BERRIO - OTXOA 15",
@@ -1237,7 +1237,7 @@
       "idMatch": "104113",
       "jornada": 7,
       "fecha": "2026-12-12",
-      "hora": "10:20",
+      "hora": "12:00",
       "local": {
         "id": "17080",
         "nombre": "REHABILITACIONES BILCONVER XXI",
