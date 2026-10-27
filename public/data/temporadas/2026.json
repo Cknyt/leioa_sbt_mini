@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-26T12:48:19.523Z",
+  "generatedAt": "2026-10-27T10:24:33.350Z",
   "equipo": {
     "id": "17087",
     "nombre": "Leioa SBT",
@@ -897,7 +897,7 @@
       "idMatch": "104093",
       "jornada": 2,
       "fecha": "2026-10-31",
-      "hora": null,
+      "hora": "10:00",
       "local": {
         "id": "17082",
         "nombre": "LOIOLA INDAUTXU 2015",
