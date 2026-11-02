@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-31T12:12:34.330Z",
+  "generatedAt": "2026-11-02T15:36:15.221Z",
   "equipo": {
     "id": "17087",
     "nombre": "Leioa SBT",
@@ -134,8 +134,8 @@
         "idMatch": "104097",
         "jornada": 3,
         "fecha": "2026-11-07",
-        "hora": "11:00",
-        "convocatoria": "10:15",
+        "hora": "09:00",
+        "convocatoria": "08:15",
         "horaPendiente": false,
         "franja": "M",
         "local": true,
@@ -157,19 +157,32 @@
           }
         },
         "pista": {
-          "id": "138",
-          "nombre": "POL.KANDELAZUBIETA",
-          "direccion": "KANDELAZUBIETA KALEA, S/N",
+          "id": "419",
+          "nombre": "C.P. SAN BARTOLOME",
+          "direccion": "SAN BARTOLOME, 4",
           "codigoPostal": "48940",
           "localidad": "Leioa",
-          "lat": 43.32383,
-          "lng": -2.98428,
+          "lat": null,
+          "lng": null,
           "aparcamiento": null,
           "notas": null,
           "foto": null
         },
         "marcador": null,
-        "cambios": []
+        "cambios": [
+          {
+            "campo": "hora",
+            "antes": "11:00",
+            "ahora": "09:00",
+            "detectado": "2026-11-02T15:36:15.221Z"
+          },
+          {
+            "campo": "pista",
+            "antes": "POL.KANDELAZUBIETA",
+            "ahora": "C.P. SAN BARTOLOME",
+            "detectado": "2026-11-02T15:36:15.221Z"
+          }
+        ]
       }
     },
     {
@@ -946,7 +959,7 @@
       "idMatch": "104095",
       "jornada": 3,
       "fecha": "2026-11-07",
-      "hora": null,
+      "hora": "09:00",
       "local": {
         "id": "17085",
         "nombre": "LA SALLE 2016",
@@ -963,7 +976,7 @@
       "idMatch": "104096",
       "jornada": 3,
       "fecha": "2026-11-07",
-      "hora": null,
+      "hora": "11:00",
       "local": {
         "id": "17086",
         "nombre": "LA SALLE 2015",
@@ -980,7 +993,7 @@
       "idMatch": "104097",
       "jornada": 3,
       "fecha": "2026-11-07",
-      "hora": "11:00",
+      "hora": "09:00",
       "local": {
         "id": "17087",
         "nombre": "Leioa SBT",
