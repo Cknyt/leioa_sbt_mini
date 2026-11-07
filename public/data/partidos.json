@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-05T03:26:22.767Z",
+  "generatedAt": "2026-11-07T11:24:50.194Z",
   "equipo": {
     "id": "17087",
     "nombre": "Leioa SBT",
@@ -168,7 +168,10 @@
           "notas": null,
           "foto": null
         },
-        "marcador": null,
+        "marcador": {
+          "local": 71,
+          "visitante": 18
+        },
         "cambios": [
           {
             "campo": "hora",
@@ -970,7 +973,10 @@
         "nombre": "SANTURTZI MINI MORADO MASC",
         "escudo": "img/escudos/17083.png"
       },
-      "marcador": null
+      "marcador": {
+        "local": 55,
+        "visitante": 54
+      }
     },
     {
       "idMatch": "104096",
@@ -987,7 +993,10 @@
         "nombre": "LOIOLA INDAUTXU 2015",
         "escudo": "img/escudos/17082.png"
       },
-      "marcador": null
+      "marcador": {
+        "local": 52,
+        "visitante": 66
+      }
     },
     {
       "idMatch": "104097",
@@ -1004,7 +1013,10 @@
         "nombre": "Ibaizabal Berdea",
         "escudo": "img/escudos/17081.png"
       },
-      "marcador": null
+      "marcador": {
+        "local": 71,
+        "visitante": 18
+      }
     },
     {
       "idMatch": "104098",
@@ -1021,7 +1033,10 @@
         "nombre": "REHABILITACIONES BILCONVER XXI",
         "escudo": null
       },
-      "marcador": null
+      "marcador": {
+        "local": 80,
+        "visitante": 59
+      }
     },
     {
       "idMatch": "104099",
@@ -2049,21 +2064,51 @@
       "id": "17087",
       "nombre": "Leioa SBT",
       "posicion": 1,
-      "jugados": 2,
-      "ganados": 2,
+      "jugados": 3,
+      "ganados": 3,
       "perdidos": 0,
       "empatados": 0,
-      "puntosFavor": 193,
-      "puntosContra": 95,
-      "puntos": 4,
+      "puntosFavor": 264,
+      "puntosContra": 113,
+      "puntos": 6,
       "noPresentados": 0,
       "esNuestro": true,
       "escudo": "img/escudos/17087.png"
     },
     {
+      "id": "17082",
+      "nombre": "LOIOLA INDAUTXU 2015",
+      "posicion": 2,
+      "jugados": 3,
+      "ganados": 2,
+      "perdidos": 1,
+      "empatados": 0,
+      "puntosFavor": 212,
+      "puntosContra": 165,
+      "puntos": 5,
+      "noPresentados": 0,
+      "esNuestro": false,
+      "escudo": "img/escudos/17082.png"
+    },
+    {
+      "id": "17081",
+      "nombre": "Ibaizabal Berdea",
+      "posicion": 3,
+      "jugados": 3,
+      "ganados": 2,
+      "perdidos": 1,
+      "empatados": 0,
+      "puntosFavor": 125,
+      "puntosContra": 170,
+      "puntos": 5,
+      "noPresentados": 0,
+      "esNuestro": false,
+      "escudo": "img/escudos/17081.png"
+    },
+    {
       "id": "17084",
       "nombre": "TABIRAKO 2015 M",
-      "posicion": 2,
+      "posicion": 4,
       "jugados": 2,
       "ganados": 2,
       "perdidos": 0,
@@ -2076,46 +2121,31 @@
       "escudo": "img/escudos/17084.jpg"
     },
     {
-      "id": "17081",
-      "nombre": "Ibaizabal Berdea",
-      "posicion": 3,
-      "jugados": 2,
-      "ganados": 2,
-      "perdidos": 0,
+      "id": "17085",
+      "nombre": "LA SALLE 2016",
+      "posicion": 5,
+      "jugados": 3,
+      "ganados": 1,
+      "perdidos": 2,
       "empatados": 0,
-      "puntosFavor": 107,
-      "puntosContra": 99,
+      "puntosFavor": 154,
+      "puntosContra": 202,
       "puntos": 4,
       "noPresentados": 0,
       "esNuestro": false,
-      "escudo": "img/escudos/17081.png"
-    },
-    {
-      "id": "17082",
-      "nombre": "LOIOLA INDAUTXU 2015",
-      "posicion": 4,
-      "jugados": 2,
-      "ganados": 1,
-      "perdidos": 1,
-      "empatados": 0,
-      "puntosFavor": 146,
-      "puntosContra": 113,
-      "puntos": 3,
-      "noPresentados": 0,
-      "esNuestro": false,
-      "escudo": "img/escudos/17082.png"
+      "escudo": "img/escudos/17085.png"
     },
     {
       "id": "17080",
       "nombre": "REHABILITACIONES BILCONVER XXI",
-      "posicion": 5,
-      "jugados": 2,
+      "posicion": 6,
+      "jugados": 3,
       "ganados": 1,
-      "perdidos": 1,
+      "perdidos": 2,
       "empatados": 0,
-      "puntosFavor": 109,
-      "puntosContra": 155,
-      "puntos": 3,
+      "puntosFavor": 168,
+      "puntosContra": 235,
+      "puntos": 4,
       "noPresentados": 0,
       "esNuestro": false,
       "escudo": null
@@ -2123,62 +2153,47 @@
     {
       "id": "17086",
       "nombre": "LA SALLE 2015",
-      "posicion": 6,
-      "jugados": 2,
+      "posicion": 7,
+      "jugados": 3,
       "ganados": 0,
-      "perdidos": 2,
+      "perdidos": 3,
       "empatados": 0,
-      "puntosFavor": 100,
-      "puntosContra": 102,
-      "puntos": 2,
+      "puntosFavor": 152,
+      "puntosContra": 168,
+      "puntos": 3,
       "noPresentados": 0,
       "esNuestro": false,
       "escudo": "img/escudos/17086.png"
     },
     {
-      "id": "17085",
-      "nombre": "LA SALLE 2016",
-      "posicion": 7,
+      "id": "17079",
+      "nombre": "BERRIO - OTXOA 15",
+      "posicion": 8,
       "jugados": 2,
-      "ganados": 0,
-      "perdidos": 2,
+      "ganados": 1,
+      "perdidos": 1,
       "empatados": 0,
-      "puntosFavor": 99,
-      "puntosContra": 148,
-      "puntos": 2,
+      "puntosFavor": 121,
+      "puntosContra": 151,
+      "puntos": 3,
       "noPresentados": 0,
       "esNuestro": false,
-      "escudo": "img/escudos/17085.png"
+      "escudo": null
     },
     {
       "id": "17083",
       "nombre": "SANTURTZI MINI MORADO MASC",
-      "posicion": 8,
-      "jugados": 1,
+      "posicion": 9,
+      "jugados": 2,
       "ganados": 0,
-      "perdidos": 1,
+      "perdidos": 2,
       "empatados": 0,
-      "puntosFavor": 61,
-      "puntosContra": 91,
-      "puntos": 1,
+      "puntosFavor": 115,
+      "puntosContra": 146,
+      "puntos": 2,
       "noPresentados": 0,
       "esNuestro": false,
       "escudo": "img/escudos/17083.png"
-    },
-    {
-      "id": "17079",
-      "nombre": "BERRIO - OTXOA 15",
-      "posicion": 9,
-      "jugados": 1,
-      "ganados": 0,
-      "perdidos": 1,
-      "empatados": 0,
-      "puntosFavor": 41,
-      "puntosContra": 92,
-      "puntos": 1,
-      "noPresentados": 0,
-      "esNuestro": false,
-      "escudo": null
     }
   ],
   "clasificacionCalculada": false
