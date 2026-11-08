@@ -1,15 +1,15 @@
 {
-  "generatedAt": "2026-11-08T00:26:26.069Z",
+  "generatedAt": "2026-11-08T07:12:05.625Z",
   "partidos": {
     "104100": {
       "fecha": "2026-11-14",
       "horaReferencia": "17:00",
       "aproximada": true,
-      "temperatura": 14,
-      "probLluvia": 13,
-      "viento": 4,
-      "descripcion": "Llovizna",
-      "icono": "🌦️"
+      "temperatura": 18,
+      "probLluvia": 19,
+      "viento": 10,
+      "descripcion": "Poco nuboso",
+      "icono": "🌤️"
     }
   }
 }
