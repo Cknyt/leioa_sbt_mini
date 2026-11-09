@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-07T11:24:50.194Z",
+  "generatedAt": "2026-11-09T16:03:50.117Z",
   "equipo": {
     "id": "17087",
     "nombre": "Leioa SBT",
@@ -93,7 +93,7 @@
         "rival": {
           "id": "17080",
           "nombre": "REHABILITACIONES BILCONVER XXI",
-          "escudo": null
+          "escudo": "img/escudos/17080.jpg"
         },
         "equipoLocal": "REHABILITACIONES BILCONVER XXI",
         "equipoVisitante": "Leioa SBT",
@@ -485,7 +485,7 @@
         "rival": {
           "id": "17080",
           "nombre": "REHABILITACIONES BILCONVER XXI",
-          "escudo": null
+          "escudo": "img/escudos/17080.jpg"
         },
         "equipoLocal": "Leioa SBT",
         "equipoVisitante": "REHABILITACIONES BILCONVER XXI",
@@ -851,7 +851,7 @@
       "visitante": {
         "id": "17080",
         "nombre": "REHABILITACIONES BILCONVER XXI",
-        "escudo": null
+        "escudo": "img/escudos/17080.jpg"
       },
       "marcador": {
         "local": 54,
@@ -886,7 +886,7 @@
       "local": {
         "id": "17080",
         "nombre": "REHABILITACIONES BILCONVER XXI",
-        "escudo": null
+        "escudo": "img/escudos/17080.jpg"
       },
       "visitante": {
         "id": "17087",
@@ -1031,7 +1031,7 @@
       "visitante": {
         "id": "17080",
         "nombre": "REHABILITACIONES BILCONVER XXI",
-        "escudo": null
+        "escudo": "img/escudos/17080.jpg"
       },
       "marcador": {
         "local": 80,
@@ -1076,7 +1076,7 @@
       "idMatch": "104101",
       "jornada": 4,
       "fecha": "2026-11-14",
-      "hora": "09:30",
+      "hora": "09:00",
       "local": {
         "id": "17083",
         "nombre": "SANTURTZI MINI MORADO MASC",
@@ -1093,7 +1093,7 @@
       "idMatch": "104102",
       "jornada": 4,
       "fecha": "2026-11-14",
-      "hora": null,
+      "hora": "12:30",
       "local": {
         "id": "17084",
         "nombre": "TABIRAKO 2015 M",
@@ -1165,7 +1165,7 @@
       "local": {
         "id": "17080",
         "nombre": "REHABILITACIONES BILCONVER XXI",
-        "escudo": null
+        "escudo": "img/escudos/17080.jpg"
       },
       "visitante": {
         "id": "17081",
@@ -1187,7 +1187,7 @@
       "visitante": {
         "id": "17080",
         "nombre": "REHABILITACIONES BILCONVER XXI",
-        "escudo": null
+        "escudo": "img/escudos/17080.jpg"
       },
       "marcador": null
     },
@@ -1195,7 +1195,7 @@
       "idMatch": "104108",
       "jornada": 6,
       "fecha": "2026-11-28",
-      "hora": "09:30",
+      "hora": "10:45",
       "local": {
         "id": "17083",
         "nombre": "SANTURTZI MINI MORADO MASC",
@@ -1284,7 +1284,7 @@
       "local": {
         "id": "17080",
         "nombre": "REHABILITACIONES BILCONVER XXI",
-        "escudo": null
+        "escudo": "img/escudos/17080.jpg"
       },
       "visitante": {
         "id": "17083",
@@ -1340,7 +1340,7 @@
       "visitante": {
         "id": "17080",
         "nombre": "REHABILITACIONES BILCONVER XXI",
-        "escudo": null
+        "escudo": "img/escudos/17080.jpg"
       },
       "marcador": null
     },
@@ -1403,7 +1403,7 @@
       "local": {
         "id": "17080",
         "nombre": "REHABILITACIONES BILCONVER XXI",
-        "escudo": null
+        "escudo": "img/escudos/17080.jpg"
       },
       "visitante": {
         "id": "17085",
@@ -1488,7 +1488,7 @@
       "local": {
         "id": "17080",
         "nombre": "REHABILITACIONES BILCONVER XXI",
-        "escudo": null
+        "escudo": "img/escudos/17080.jpg"
       },
       "visitante": {
         "id": "17086",
@@ -1527,7 +1527,7 @@
       "visitante": {
         "id": "17080",
         "nombre": "REHABILITACIONES BILCONVER XXI",
-        "escudo": null
+        "escudo": "img/escudos/17080.jpg"
       },
       "marcador": null
     },
@@ -1641,7 +1641,7 @@
       "local": {
         "id": "17080",
         "nombre": "REHABILITACIONES BILCONVER XXI",
-        "escudo": null
+        "escudo": "img/escudos/17080.jpg"
       },
       "visitante": {
         "id": "17079",
@@ -1782,7 +1782,7 @@
       "visitante": {
         "id": "17080",
         "nombre": "REHABILITACIONES BILCONVER XXI",
-        "escudo": null
+        "escudo": "img/escudos/17080.jpg"
       },
       "marcador": null
     },
@@ -1794,7 +1794,7 @@
       "local": {
         "id": "17080",
         "nombre": "REHABILITACIONES BILCONVER XXI",
-        "escudo": null
+        "escudo": "img/escudos/17080.jpg"
       },
       "visitante": {
         "id": "17082",
@@ -1901,7 +1901,7 @@
       "visitante": {
         "id": "17080",
         "nombre": "REHABILITACIONES BILCONVER XXI",
-        "escudo": null
+        "escudo": "img/escudos/17080.jpg"
       },
       "marcador": null
     },
@@ -1947,7 +1947,7 @@
       "local": {
         "id": "17080",
         "nombre": "REHABILITACIONES BILCONVER XXI",
-        "escudo": null
+        "escudo": "img/escudos/17080.jpg"
       },
       "visitante": {
         "id": "17084",
@@ -2020,7 +2020,7 @@
       "visitante": {
         "id": "17080",
         "nombre": "REHABILITACIONES BILCONVER XXI",
-        "escudo": null
+        "escudo": "img/escudos/17080.jpg"
       },
       "marcador": null
     },
@@ -2148,7 +2148,7 @@
       "puntos": 4,
       "noPresentados": 0,
       "esNuestro": false,
-      "escudo": null
+      "escudo": "img/escudos/17080.jpg"
     },
     {
       "id": "17086",
