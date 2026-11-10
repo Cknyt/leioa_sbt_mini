@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-09T16:03:50.117Z",
+  "generatedAt": "2026-11-10T08:18:33.477Z",
   "equipo": {
     "id": "17087",
     "nombre": "Leioa SBT",
@@ -196,10 +196,10 @@
         "idMatch": "104100",
         "jornada": 4,
         "fecha": "2026-11-14",
-        "hora": null,
-        "convocatoria": null,
-        "horaPendiente": true,
-        "franja": "T",
+        "hora": "11:30",
+        "convocatoria": "10:45",
+        "horaPendiente": false,
+        "franja": "M",
         "local": false,
         "rival": {
           "id": "17082",
@@ -231,7 +231,14 @@
           "foto": null
         },
         "marcador": null,
-        "cambios": []
+        "cambios": [
+          {
+            "campo": "hora",
+            "antes": null,
+            "ahora": "11:30",
+            "detectado": "2026-11-10T08:18:33.477Z"
+          }
+        ]
       }
     },
     {
@@ -1042,7 +1049,7 @@
       "idMatch": "104099",
       "jornada": 4,
       "fecha": "2026-11-14",
-      "hora": "11:00",
+      "hora": "10:00",
       "local": {
         "id": "17081",
         "nombre": "Ibaizabal Berdea",
@@ -1059,7 +1066,7 @@
       "idMatch": "104100",
       "jornada": 4,
       "fecha": "2026-11-14",
-      "hora": null,
+      "hora": "11:30",
       "local": {
         "id": "17082",
         "nombre": "LOIOLA INDAUTXU 2015",
