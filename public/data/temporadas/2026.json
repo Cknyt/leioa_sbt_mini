@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-12T01:28:16.395Z",
+  "generatedAt": "2026-11-14T10:11:45.331Z",
   "equipo": {
     "id": "17087",
     "nombre": "Leioa SBT",
@@ -1094,7 +1094,10 @@
         "nombre": "LA SALLE 2015",
         "escudo": "img/escudos/17086.png"
       },
-      "marcador": null
+      "marcador": {
+        "local": 61,
+        "visitante": 74
+      }
     },
     {
       "idMatch": "104102",
@@ -2098,9 +2101,24 @@
       "escudo": "img/escudos/17082.png"
     },
     {
+      "id": "17086",
+      "nombre": "LA SALLE 2015",
+      "posicion": 3,
+      "jugados": 4,
+      "ganados": 1,
+      "perdidos": 3,
+      "empatados": 0,
+      "puntosFavor": 226,
+      "puntosContra": 229,
+      "puntos": 5,
+      "noPresentados": 0,
+      "esNuestro": false,
+      "escudo": "img/escudos/17086.png"
+    },
+    {
       "id": "17081",
       "nombre": "Ibaizabal Berdea",
-      "posicion": 3,
+      "posicion": 4,
       "jugados": 3,
       "ganados": 2,
       "perdidos": 1,
@@ -2115,7 +2133,7 @@
     {
       "id": "17084",
       "nombre": "TABIRAKO 2015 M",
-      "posicion": 4,
+      "posicion": 5,
       "jugados": 2,
       "ganados": 2,
       "perdidos": 0,
@@ -2130,7 +2148,7 @@
     {
       "id": "17085",
       "nombre": "LA SALLE 2016",
-      "posicion": 5,
+      "posicion": 6,
       "jugados": 3,
       "ganados": 1,
       "perdidos": 2,
@@ -2145,7 +2163,7 @@
     {
       "id": "17080",
       "nombre": "REHABILITACIONES BILCONVER XXI",
-      "posicion": 6,
+      "posicion": 7,
       "jugados": 3,
       "ganados": 1,
       "perdidos": 2,
@@ -2156,21 +2174,6 @@
       "noPresentados": 0,
       "esNuestro": false,
       "escudo": "img/escudos/17080.jpg"
-    },
-    {
-      "id": "17086",
-      "nombre": "LA SALLE 2015",
-      "posicion": 7,
-      "jugados": 3,
-      "ganados": 0,
-      "perdidos": 3,
-      "empatados": 0,
-      "puntosFavor": 152,
-      "puntosContra": 168,
-      "puntos": 3,
-      "noPresentados": 0,
-      "esNuestro": false,
-      "escudo": "img/escudos/17086.png"
     },
     {
       "id": "17079",
@@ -2191,13 +2194,13 @@
       "id": "17083",
       "nombre": "SANTURTZI MINI MORADO MASC",
       "posicion": 9,
-      "jugados": 2,
+      "jugados": 3,
       "ganados": 0,
-      "perdidos": 2,
+      "perdidos": 3,
       "empatados": 0,
-      "puntosFavor": 115,
-      "puntosContra": 146,
-      "puntos": 2,
+      "puntosFavor": 176,
+      "puntosContra": 220,
+      "puntos": 3,
       "noPresentados": 0,
       "esNuestro": false,
       "escudo": "img/escudos/17083.png"
