@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-14T10:11:45.331Z",
+  "generatedAt": "2026-11-14T13:02:29.528Z",
   "equipo": {
     "id": "17087",
     "nombre": "Leioa SBT",
@@ -230,7 +230,10 @@
           "notas": null,
           "foto": null
         },
-        "marcador": null,
+        "marcador": {
+          "local": 46,
+          "visitante": 94
+        },
         "cambios": [
           {
             "campo": "hora",
@@ -1060,7 +1063,10 @@
         "nombre": "BERRIO - OTXOA 15",
         "escudo": null
       },
-      "marcador": null
+      "marcador": {
+        "local": 48,
+        "visitante": 70
+      }
     },
     {
       "idMatch": "104100",
@@ -1077,7 +1083,10 @@
         "nombre": "Leioa SBT",
         "escudo": "img/escudos/17087.png"
       },
-      "marcador": null
+      "marcador": {
+        "local": 46,
+        "visitante": 94
+      }
     },
     {
       "idMatch": "104101",
@@ -1114,7 +1123,10 @@
         "nombre": "LA SALLE 2016",
         "escudo": "img/escudos/17085.png"
       },
-      "marcador": null
+      "marcador": {
+        "local": 50,
+        "visitante": 49
+      }
     },
     {
       "idMatch": "104103",
@@ -2074,36 +2086,66 @@
       "id": "17087",
       "nombre": "Leioa SBT",
       "posicion": 1,
-      "jugados": 3,
-      "ganados": 3,
+      "jugados": 4,
+      "ganados": 4,
       "perdidos": 0,
       "empatados": 0,
-      "puntosFavor": 264,
-      "puntosContra": 113,
-      "puntos": 6,
+      "puntosFavor": 358,
+      "puntosContra": 159,
+      "puntos": 8,
       "noPresentados": 0,
       "esNuestro": true,
       "escudo": "img/escudos/17087.png"
     },
     {
-      "id": "17082",
-      "nombre": "LOIOLA INDAUTXU 2015",
+      "id": "17084",
+      "nombre": "TABIRAKO 2015 M",
       "posicion": 2,
       "jugados": 3,
-      "ganados": 2,
-      "perdidos": 1,
+      "ganados": 3,
+      "perdidos": 0,
       "empatados": 0,
-      "puntosFavor": 212,
-      "puntosContra": 165,
-      "puntos": 5,
+      "puntosFavor": 208,
+      "puntosContra": 168,
+      "puntos": 6,
+      "noPresentados": 0,
+      "esNuestro": false,
+      "escudo": "img/escudos/17084.jpg"
+    },
+    {
+      "id": "17082",
+      "nombre": "LOIOLA INDAUTXU 2015",
+      "posicion": 3,
+      "jugados": 4,
+      "ganados": 2,
+      "perdidos": 2,
+      "empatados": 0,
+      "puntosFavor": 258,
+      "puntosContra": 259,
+      "puntos": 6,
       "noPresentados": 0,
       "esNuestro": false,
       "escudo": "img/escudos/17082.png"
     },
     {
+      "id": "17081",
+      "nombre": "Ibaizabal Berdea",
+      "posicion": 4,
+      "jugados": 4,
+      "ganados": 2,
+      "perdidos": 2,
+      "empatados": 0,
+      "puntosFavor": 173,
+      "puntosContra": 240,
+      "puntos": 6,
+      "noPresentados": 0,
+      "esNuestro": false,
+      "escudo": "img/escudos/17081.png"
+    },
+    {
       "id": "17086",
       "nombre": "LA SALLE 2015",
-      "posicion": 3,
+      "posicion": 5,
       "jugados": 4,
       "ganados": 1,
       "perdidos": 3,
@@ -2116,46 +2158,31 @@
       "escudo": "img/escudos/17086.png"
     },
     {
-      "id": "17081",
-      "nombre": "Ibaizabal Berdea",
-      "posicion": 4,
+      "id": "17079",
+      "nombre": "BERRIO - OTXOA 15",
+      "posicion": 6,
       "jugados": 3,
       "ganados": 2,
       "perdidos": 1,
       "empatados": 0,
-      "puntosFavor": 125,
-      "puntosContra": 170,
+      "puntosFavor": 191,
+      "puntosContra": 199,
       "puntos": 5,
       "noPresentados": 0,
       "esNuestro": false,
-      "escudo": "img/escudos/17081.png"
-    },
-    {
-      "id": "17084",
-      "nombre": "TABIRAKO 2015 M",
-      "posicion": 5,
-      "jugados": 2,
-      "ganados": 2,
-      "perdidos": 0,
-      "empatados": 0,
-      "puntosFavor": 158,
-      "puntosContra": 119,
-      "puntos": 4,
-      "noPresentados": 0,
-      "esNuestro": false,
-      "escudo": "img/escudos/17084.jpg"
+      "escudo": null
     },
     {
       "id": "17085",
       "nombre": "LA SALLE 2016",
-      "posicion": 6,
-      "jugados": 3,
+      "posicion": 7,
+      "jugados": 4,
       "ganados": 1,
-      "perdidos": 2,
+      "perdidos": 3,
       "empatados": 0,
-      "puntosFavor": 154,
-      "puntosContra": 202,
-      "puntos": 4,
+      "puntosFavor": 203,
+      "puntosContra": 252,
+      "puntos": 5,
       "noPresentados": 0,
       "esNuestro": false,
       "escudo": "img/escudos/17085.png"
@@ -2163,7 +2190,7 @@
     {
       "id": "17080",
       "nombre": "REHABILITACIONES BILCONVER XXI",
-      "posicion": 7,
+      "posicion": 8,
       "jugados": 3,
       "ganados": 1,
       "perdidos": 2,
@@ -2174,21 +2201,6 @@
       "noPresentados": 0,
       "esNuestro": false,
       "escudo": "img/escudos/17080.jpg"
-    },
-    {
-      "id": "17079",
-      "nombre": "BERRIO - OTXOA 15",
-      "posicion": 8,
-      "jugados": 2,
-      "ganados": 1,
-      "perdidos": 1,
-      "empatados": 0,
-      "puntosFavor": 121,
-      "puntosContra": 151,
-      "puntos": 3,
-      "noPresentados": 0,
-      "esNuestro": false,
-      "escudo": null
     },
     {
       "id": "17083",
