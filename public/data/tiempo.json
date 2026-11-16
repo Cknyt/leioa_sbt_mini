@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-11-15T20:27:22.668Z",
+  "generatedAt": "2026-11-16T01:53:01.404Z",
   "partidos": {
     "104104": {
       "fecha": "2026-11-21",
       "horaReferencia": "11:00",
       "aproximada": false,
-      "temperatura": 12,
+      "temperatura": 13,
       "probLluvia": 12,
       "viento": 15,
       "descripcion": "Nublado",
