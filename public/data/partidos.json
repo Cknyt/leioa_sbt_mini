@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-16T09:28:13.620Z",
+  "generatedAt": "2026-11-16T20:19:29.489Z",
   "equipo": {
     "id": "17087",
     "nombre": "Leioa SBT",
@@ -252,8 +252,8 @@
         "idMatch": "104104",
         "jornada": 5,
         "fecha": "2026-11-21",
-        "hora": "11:00",
-        "convocatoria": "10:15",
+        "hora": "10:30",
+        "convocatoria": "09:45",
         "horaPendiente": false,
         "franja": "M",
         "local": true,
@@ -275,19 +275,32 @@
           }
         },
         "pista": {
-          "id": "138",
-          "nombre": "POL.KANDELAZUBIETA",
-          "direccion": "KANDELAZUBIETA KALEA, S/N",
+          "id": "419",
+          "nombre": "C.P. SAN BARTOLOME",
+          "direccion": "SAN BARTOLOME, 4",
           "codigoPostal": "48940",
           "localidad": "Leioa",
-          "lat": 43.32383,
-          "lng": -2.98428,
+          "lat": null,
+          "lng": null,
           "aparcamiento": null,
           "notas": null,
           "foto": null
         },
         "marcador": null,
-        "cambios": []
+        "cambios": [
+          {
+            "campo": "hora",
+            "antes": "11:00",
+            "ahora": "10:30",
+            "detectado": "2026-11-16T20:19:29.489Z"
+          },
+          {
+            "campo": "pista",
+            "antes": "POL.KANDELAZUBIETA",
+            "ahora": "C.P. SAN BARTOLOME",
+            "detectado": "2026-11-16T20:19:29.489Z"
+          }
+        ]
       }
     },
     {
@@ -1149,7 +1162,7 @@
       "idMatch": "104104",
       "jornada": 5,
       "fecha": "2026-11-21",
-      "hora": "11:00",
+      "hora": "10:30",
       "local": {
         "id": "17087",
         "nombre": "Leioa SBT",
