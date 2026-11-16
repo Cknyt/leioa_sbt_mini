@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-14T13:02:29.528Z",
+  "generatedAt": "2026-11-16T09:28:13.620Z",
   "equipo": {
     "id": "17087",
     "nombre": "Leioa SBT",
@@ -1166,7 +1166,7 @@
       "idMatch": "104105",
       "jornada": 5,
       "fecha": "2026-11-21",
-      "hora": "11:00",
+      "hora": "13:00",
       "local": {
         "id": "17079",
         "nombre": "BERRIO - OTXOA 15",
