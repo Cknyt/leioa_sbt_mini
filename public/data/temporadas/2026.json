@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-16T20:19:29.489Z",
+  "generatedAt": "2026-11-17T13:08:02.787Z",
   "equipo": {
     "id": "17087",
     "nombre": "Leioa SBT",
@@ -1145,7 +1145,7 @@
       "idMatch": "104103",
       "jornada": 5,
       "fecha": "2026-11-21",
-      "hora": null,
+      "hora": "09:00",
       "local": {
         "id": "17086",
         "nombre": "LA SALLE 2015",
