@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-17T13:08:02.787Z",
+  "generatedAt": "2026-11-18T13:49:16.948Z",
   "equipo": {
     "id": "17087",
     "nombre": "Leioa SBT",
@@ -1230,7 +1230,7 @@
       "idMatch": "104108",
       "jornada": 6,
       "fecha": "2026-11-28",
-      "hora": "10:45",
+      "hora": "10:15",
       "local": {
         "id": "17083",
         "nombre": "SANTURTZI MINI MORADO MASC",
