@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-18T13:49:16.948Z",
+  "generatedAt": "2026-11-19T03:13:32.768Z",
   "equipo": {
     "id": "17087",
     "nombre": "Leioa SBT",
@@ -12,7 +12,7 @@
     "categoria": "MINIBASKET MASCULINO-A-",
     "temporada": "2026"
   },
-  "jornadaActual": 4,
+  "jornadaActual": 5,
   "totalJornadas": 18,
   "jornadas": [
     {
