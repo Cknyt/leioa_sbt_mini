@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-21T09:37:29.289Z",
+  "generatedAt": "2026-11-21T15:28:56.237Z",
   "equipo": {
     "id": "17087",
     "nombre": "Leioa SBT",
@@ -286,7 +286,10 @@
           "notas": null,
           "foto": null
         },
-        "marcador": null,
+        "marcador": {
+          "local": 124,
+          "visitante": 23
+        },
         "cambios": [
           {
             "campo": "hora",
@@ -1176,7 +1179,10 @@
         "nombre": "SANTURTZI MINI MORADO MASC",
         "escudo": "img/escudos/17083.png"
       },
-      "marcador": null
+      "marcador": {
+        "local": 124,
+        "visitante": 23
+      }
     },
     {
       "idMatch": "104105",
@@ -1193,7 +1199,10 @@
         "nombre": "LOIOLA INDAUTXU 2015",
         "escudo": "img/escudos/17082.png"
       },
-      "marcador": null
+      "marcador": {
+        "local": 51,
+        "visitante": 71
+      }
     },
     {
       "idMatch": "104106",
@@ -1210,7 +1219,10 @@
         "nombre": "Ibaizabal Berdea",
         "escudo": "img/escudos/17081.png"
       },
-      "marcador": null
+      "marcador": {
+        "local": 56,
+        "visitante": 48
+      }
     },
     {
       "idMatch": "104107",
@@ -2102,13 +2114,13 @@
       "id": "17087",
       "nombre": "Leioa SBT",
       "posicion": 1,
-      "jugados": 4,
-      "ganados": 4,
+      "jugados": 5,
+      "ganados": 5,
       "perdidos": 0,
       "empatados": 0,
-      "puntosFavor": 358,
-      "puntosContra": 159,
-      "puntos": 8,
+      "puntosFavor": 482,
+      "puntosContra": 182,
+      "puntos": 10,
       "noPresentados": 0,
       "esNuestro": true,
       "escudo": "img/escudos/17087.png"
@@ -2132,21 +2144,51 @@
       "id": "17082",
       "nombre": "LOIOLA INDAUTXU 2015",
       "posicion": 3,
-      "jugados": 4,
-      "ganados": 2,
+      "jugados": 5,
+      "ganados": 3,
       "perdidos": 2,
       "empatados": 0,
-      "puntosFavor": 258,
-      "puntosContra": 259,
-      "puntos": 6,
+      "puntosFavor": 329,
+      "puntosContra": 310,
+      "puntos": 8,
       "noPresentados": 0,
       "esNuestro": false,
       "escudo": "img/escudos/17082.png"
     },
     {
+      "id": "17081",
+      "nombre": "Ibaizabal Berdea",
+      "posicion": 4,
+      "jugados": 5,
+      "ganados": 2,
+      "perdidos": 3,
+      "empatados": 0,
+      "puntosFavor": 221,
+      "puntosContra": 296,
+      "puntos": 7,
+      "noPresentados": 0,
+      "esNuestro": false,
+      "escudo": "img/escudos/17081.png"
+    },
+    {
+      "id": "17079",
+      "nombre": "BERRIO - OTXOA 15",
+      "posicion": 5,
+      "jugados": 4,
+      "ganados": 2,
+      "perdidos": 2,
+      "empatados": 0,
+      "puntosFavor": 242,
+      "puntosContra": 270,
+      "puntos": 6,
+      "noPresentados": 0,
+      "esNuestro": false,
+      "escudo": null
+    },
+    {
       "id": "17086",
       "nombre": "LA SALLE 2015",
-      "posicion": 4,
+      "posicion": 6,
       "jugados": 5,
       "ganados": 1,
       "perdidos": 4,
@@ -2159,39 +2201,24 @@
       "escudo": "img/escudos/17086.png"
     },
     {
-      "id": "17081",
-      "nombre": "Ibaizabal Berdea",
-      "posicion": 5,
+      "id": "17080",
+      "nombre": "REHABILITACIONES BILCONVER XXI",
+      "posicion": 7,
       "jugados": 4,
       "ganados": 2,
       "perdidos": 2,
       "empatados": 0,
-      "puntosFavor": 173,
-      "puntosContra": 240,
+      "puntosFavor": 224,
+      "puntosContra": 283,
       "puntos": 6,
       "noPresentados": 0,
       "esNuestro": false,
-      "escudo": "img/escudos/17081.png"
-    },
-    {
-      "id": "17079",
-      "nombre": "BERRIO - OTXOA 15",
-      "posicion": 6,
-      "jugados": 3,
-      "ganados": 2,
-      "perdidos": 1,
-      "empatados": 0,
-      "puntosFavor": 191,
-      "puntosContra": 199,
-      "puntos": 5,
-      "noPresentados": 0,
-      "esNuestro": false,
-      "escudo": null
+      "escudo": "img/escudos/17080.jpg"
     },
     {
       "id": "17085",
       "nombre": "LA SALLE 2016",
-      "posicion": 7,
+      "posicion": 8,
       "jugados": 4,
       "ganados": 1,
       "perdidos": 3,
@@ -2204,31 +2231,16 @@
       "escudo": "img/escudos/17085.png"
     },
     {
-      "id": "17080",
-      "nombre": "REHABILITACIONES BILCONVER XXI",
-      "posicion": 8,
-      "jugados": 3,
-      "ganados": 1,
-      "perdidos": 2,
-      "empatados": 0,
-      "puntosFavor": 168,
-      "puntosContra": 235,
-      "puntos": 4,
-      "noPresentados": 0,
-      "esNuestro": false,
-      "escudo": "img/escudos/17080.jpg"
-    },
-    {
       "id": "17083",
       "nombre": "SANTURTZI MINI MORADO MASC",
       "posicion": 9,
-      "jugados": 3,
+      "jugados": 4,
       "ganados": 0,
-      "perdidos": 3,
+      "perdidos": 4,
       "empatados": 0,
-      "puntosFavor": 176,
-      "puntosContra": 220,
-      "puntos": 3,
+      "puntosFavor": 199,
+      "puntosContra": 344,
+      "puntos": 4,
       "noPresentados": 0,
       "esNuestro": false,
       "escudo": "img/escudos/17083.png"
