@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-19T12:51:48.128Z",
+  "generatedAt": "2026-11-21T09:37:29.289Z",
   "equipo": {
     "id": "17087",
     "nombre": "Leioa SBT",
@@ -1156,7 +1156,10 @@
         "nombre": "TABIRAKO 2015 M",
         "escudo": "img/escudos/17084.jpg"
       },
-      "marcador": null
+      "marcador": {
+        "local": 35,
+        "visitante": 62
+      }
     },
     {
       "idMatch": "104104",
@@ -2114,13 +2117,13 @@
       "id": "17084",
       "nombre": "TABIRAKO 2015 M",
       "posicion": 2,
-      "jugados": 3,
-      "ganados": 3,
+      "jugados": 4,
+      "ganados": 4,
       "perdidos": 0,
       "empatados": 0,
-      "puntosFavor": 208,
-      "puntosContra": 168,
-      "puntos": 6,
+      "puntosFavor": 270,
+      "puntosContra": 203,
+      "puntos": 8,
       "noPresentados": 0,
       "esNuestro": false,
       "escudo": "img/escudos/17084.jpg"
@@ -2141,9 +2144,24 @@
       "escudo": "img/escudos/17082.png"
     },
     {
+      "id": "17086",
+      "nombre": "LA SALLE 2015",
+      "posicion": 4,
+      "jugados": 5,
+      "ganados": 1,
+      "perdidos": 4,
+      "empatados": 0,
+      "puntosFavor": 261,
+      "puntosContra": 291,
+      "puntos": 6,
+      "noPresentados": 0,
+      "esNuestro": false,
+      "escudo": "img/escudos/17086.png"
+    },
+    {
       "id": "17081",
       "nombre": "Ibaizabal Berdea",
-      "posicion": 4,
+      "posicion": 5,
       "jugados": 4,
       "ganados": 2,
       "perdidos": 2,
@@ -2154,21 +2172,6 @@
       "noPresentados": 0,
       "esNuestro": false,
       "escudo": "img/escudos/17081.png"
-    },
-    {
-      "id": "17086",
-      "nombre": "LA SALLE 2015",
-      "posicion": 5,
-      "jugados": 4,
-      "ganados": 1,
-      "perdidos": 3,
-      "empatados": 0,
-      "puntosFavor": 226,
-      "puntosContra": 229,
-      "puntos": 5,
-      "noPresentados": 0,
-      "esNuestro": false,
-      "escudo": "img/escudos/17086.png"
     },
     {
       "id": "17079",
