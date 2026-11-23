@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-21T15:28:56.237Z",
+  "generatedAt": "2026-11-23T21:13:32.943Z",
   "equipo": {
     "id": "17087",
     "nombre": "Leioa SBT",
@@ -287,8 +287,8 @@
           "foto": null
         },
         "marcador": {
-          "local": 124,
-          "visitante": 23
+          "local": 60,
+          "visitante": 9
         },
         "cambios": [
           {
@@ -313,11 +313,11 @@
       "partido": {
         "idMatch": "104109",
         "jornada": 6,
-        "fecha": "2026-11-28",
-        "hora": null,
-        "convocatoria": null,
-        "horaPendiente": true,
-        "franja": "M",
+        "fecha": "2026-11-27",
+        "hora": "19:00",
+        "convocatoria": "18:15",
+        "horaPendiente": false,
+        "franja": "T",
         "local": false,
         "rival": {
           "id": "17084",
@@ -349,7 +349,20 @@
           "foto": null
         },
         "marcador": null,
-        "cambios": []
+        "cambios": [
+          {
+            "campo": "fecha",
+            "antes": "2026-11-28",
+            "ahora": "2026-11-27",
+            "detectado": "2026-11-23T21:13:32.943Z"
+          },
+          {
+            "campo": "hora",
+            "antes": null,
+            "ahora": "19:00",
+            "detectado": "2026-11-23T21:13:32.943Z"
+          }
+        ]
       }
     },
     {
@@ -1180,8 +1193,8 @@
         "escudo": "img/escudos/17083.png"
       },
       "marcador": {
-        "local": 124,
-        "visitante": 23
+        "local": 60,
+        "visitante": 9
       }
     },
     {
@@ -1261,8 +1274,8 @@
     {
       "idMatch": "104109",
       "jornada": 6,
-      "fecha": "2026-11-28",
-      "hora": null,
+      "fecha": "2026-11-27",
+      "hora": "19:00",
       "local": {
         "id": "17084",
         "nombre": "TABIRAKO 2015 M",
@@ -2118,8 +2131,8 @@
       "ganados": 5,
       "perdidos": 0,
       "empatados": 0,
-      "puntosFavor": 482,
-      "puntosContra": 182,
+      "puntosFavor": 418,
+      "puntosContra": 168,
       "puntos": 10,
       "noPresentados": 0,
       "esNuestro": true,
@@ -2238,8 +2251,8 @@
       "ganados": 0,
       "perdidos": 4,
       "empatados": 0,
-      "puntosFavor": 199,
-      "puntosContra": 344,
+      "puntosFavor": 185,
+      "puntosContra": 280,
       "puntos": 4,
       "noPresentados": 0,
       "esNuestro": false,
