@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-23T21:13:32.943Z",
+  "generatedAt": "2026-11-24T17:30:10.006Z",
   "equipo": {
     "id": "17087",
     "nombre": "Leioa SBT",
@@ -332,8 +332,8 @@
             "pantalon": "VERDE"
           },
           "rival": {
-            "camiseta": "AZUL",
-            "pantalon": "BLANCA"
+            "camiseta": "#7C15C1",
+            "pantalon": "#7C15C1"
           }
         },
         "pista": {
@@ -718,8 +718,8 @@
             "pantalon": "VERDE"
           },
           "rival": {
-            "camiseta": "AZUL",
-            "pantalon": "BLANCA"
+            "camiseta": "#7C15C1",
+            "pantalon": "#7C15C1"
           }
         },
         "pista": {
@@ -1241,7 +1241,7 @@
       "idMatch": "104107",
       "jornada": 6,
       "fecha": "2026-11-28",
-      "hora": null,
+      "hora": "11:30",
       "local": {
         "id": "17082",
         "nombre": "LOIOLA INDAUTXU 2015",
@@ -1292,7 +1292,7 @@
       "idMatch": "104110",
       "jornada": 6,
       "fecha": "2026-11-28",
-      "hora": null,
+      "hora": "13:00",
       "local": {
         "id": "17085",
         "nombre": "LA SALLE 2016",
