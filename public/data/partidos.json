@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-26T04:55:42.073Z",
+  "generatedAt": "2026-11-28T01:53:21.341Z",
   "equipo": {
     "id": "17087",
     "nombre": "Leioa SBT",
@@ -348,7 +348,10 @@
           "notas": null,
           "foto": null
         },
-        "marcador": null,
+        "marcador": {
+          "local": 48,
+          "visitante": 99
+        },
         "cambios": [
           {
             "campo": "fecha",
@@ -1286,7 +1289,10 @@
         "nombre": "Leioa SBT",
         "escudo": "img/escudos/17087.png"
       },
-      "marcador": null
+      "marcador": {
+        "local": 48,
+        "visitante": 99
+      }
     },
     {
       "idMatch": "104110",
@@ -2127,13 +2133,13 @@
       "id": "17087",
       "nombre": "Leioa SBT",
       "posicion": 1,
-      "jugados": 5,
-      "ganados": 5,
+      "jugados": 6,
+      "ganados": 6,
       "perdidos": 0,
       "empatados": 0,
-      "puntosFavor": 418,
-      "puntosContra": 168,
-      "puntos": 10,
+      "puntosFavor": 517,
+      "puntosContra": 216,
+      "puntos": 12,
       "noPresentados": 0,
       "esNuestro": true,
       "escudo": "img/escudos/17087.png"
@@ -2142,13 +2148,13 @@
       "id": "17084",
       "nombre": "TABIRAKO 2015 M",
       "posicion": 2,
-      "jugados": 4,
+      "jugados": 5,
       "ganados": 4,
-      "perdidos": 0,
+      "perdidos": 1,
       "empatados": 0,
-      "puntosFavor": 270,
-      "puntosContra": 203,
-      "puntos": 8,
+      "puntosFavor": 318,
+      "puntosContra": 302,
+      "puntos": 9,
       "noPresentados": 0,
       "esNuestro": false,
       "escudo": "img/escudos/17084.jpg"
